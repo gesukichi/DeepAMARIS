@@ -1,0 +1,793 @@
+[
+  {
+    "changedTime": "2025-07-25T05:37:53.366303+00:00",
+    "createdTime": "2025-07-25T05:27:51.021868+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/networkSecurityGroups/nsg-5b5qpqbzmgmdu",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "nsg-5b5qpqbzmgmdu",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "azd-env-name": "1"
+    },
+    "type": "Microsoft.Network/networkSecurityGroups"
+  },
+  {
+    "changedTime": "2025-08-21T05:32:45.757526+00:00",
+    "createdTime": "2025-07-25T05:27:51.600161+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Search/searchServices/gptkb-5b5qpqbzmgmdu",
+    "identity": {
+      "principalId": "8bac79b6-6d27-4a13-804e-0fd529e5b010",
+      "tenantId": "337f2640-9e04-4ae6-8067-20ca525aa02a",
+      "type": "SystemAssigned",
+      "userAssignedIdentities": null
+    },
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "gptkb-5b5qpqbzmgmdu",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": {
+      "capacity": null,
+      "family": null,
+      "model": null,
+      "name": "standard",
+      "size": null,
+      "tier": null
+    },
+    "systemData": {
+      "createdAt": "2025-07-25T05:27:59.814Z"
+    },
+    "tags": {
+      "azd-env-name": "activarch-chatgpt"
+    },
+    "type": "Microsoft.Search/searchServices"
+  },
+  {
+    "changedTime": "2025-08-19T04:22:05.726058+00:00",
+    "createdTime": "2025-07-25T05:27:51.602850+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/virtualNetworks/vnet-5b5qpqbzmgmdu",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "vnet-5b5qpqbzmgmdu",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "azd-env-name": "1"
+    },
+    "type": "Microsoft.Network/virtualNetworks"
+  },
+  {
+    "changedTime": "2025-08-05T14:32:51.860555+00:00",
+    "createdTime": "2025-07-25T05:27:53.038047+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.CognitiveServices/accounts/cog-fr-5b5qpqbzmgmdu",
+    "identity": null,
+    "kind": "FormRecognizer",
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "cog-fr-5b5qpqbzmgmdu",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": {
+      "capacity": null,
+      "family": null,
+      "model": null,
+      "name": "S0",
+      "size": null,
+      "tier": null
+    },
+    "systemData": {
+      "createdAt": "2025-07-25T05:27:53.0484057Z",
+      "createdBy": "y.amano@activarch.co.jp",
+      "createdByType": "User",
+      "lastModifiedAt": "2025-08-05T14:22:04.9018982Z",
+      "lastModifiedBy": "y.amano@activarch.co.jp",
+      "lastModifiedByType": "User"
+    },
+    "tags": {
+      "azd-env-name": "activarch-chatgpt"
+    },
+    "type": "Microsoft.CognitiveServices/accounts"
+  },
+  {
+    "changedTime": "2025-08-05T13:50:33.338027+00:00",
+    "createdTime": "2025-07-25T05:27:59.484089+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.CognitiveServices/accounts/cog-5b5qpqbzmgmdu",
+    "identity": null,
+    "kind": "OpenAI",
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "cog-5b5qpqbzmgmdu",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": {
+      "capacity": null,
+      "family": null,
+      "model": null,
+      "name": "S0",
+      "size": null,
+      "tier": null
+    },
+    "systemData": {
+      "createdAt": "2025-07-25T05:27:59.4959621Z",
+      "createdBy": "y.amano@activarch.co.jp",
+      "createdByType": "User",
+      "lastModifiedAt": "2025-08-05T13:46:39.1149008Z",
+      "lastModifiedBy": "y.amano@activarch.co.jp",
+      "lastModifiedByType": "User"
+    },
+    "tags": {
+      "azd-env-name": "activarch-chatgpt"
+    },
+    "type": "Microsoft.CognitiveServices/accounts"
+  },
+  {
+    "changedTime": "2025-08-12T04:39:46.000813+00:00",
+    "createdTime": "2025-07-25T06:43:34.232681+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com",
+    "identity": null,
+    "kind": null,
+    "location": "global",
+    "managedBy": null,
+    "name": "privatelink.openai.azure.com",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "azd-env-name": "1"
+    },
+    "type": "Microsoft.Network/privateDnsZones"
+  },
+  {
+    "changedTime": "2025-08-05T05:54:41.278459+00:00",
+    "createdTime": "2025-07-25T06:43:34.654691+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net",
+    "identity": null,
+    "kind": null,
+    "location": "global",
+    "managedBy": null,
+    "name": "privatelink.search.windows.net",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "azd-env-name": "1"
+    },
+    "type": "Microsoft.Network/privateDnsZones"
+  },
+  {
+    "changedTime": "2025-07-25T07:04:58.148485+00:00",
+    "createdTime": "2025-07-25T06:44:08.068832+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com/virtualNetworkLinks/privatelink.openai.azure.com-vnet-link",
+    "identity": null,
+    "kind": null,
+    "location": "global",
+    "managedBy": null,
+    "name": "privatelink.openai.azure.com/privatelink.openai.azure.com-vnet-link",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+  },
+  {
+    "changedTime": "2025-07-25T07:04:55.580982+00:00",
+    "createdTime": "2025-07-25T06:44:08.784191+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/privatelink.search.windows.net-vnet-link",
+    "identity": null,
+    "kind": null,
+    "location": "global",
+    "managedBy": null,
+    "name": "privatelink.search.windows.net/privatelink.search.windows.net-vnet-link",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+  },
+  {
+    "changedTime": "2025-08-05T11:41:58.602265+00:00",
+    "createdTime": "2025-08-05T11:31:33.573823+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateEndpoints/pe-search-5b5qpqbzmgmdu",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "pe-search-5b5qpqbzmgmdu",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/privateEndpoints"
+  },
+  {
+    "changedTime": "2025-07-28T08:21:48.505013+00:00",
+    "createdTime": "2025-07-28T08:11:48.018247+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.KeyVault/vaults/aiprojeckeyvaulta6075dab",
+    "identity": null,
+    "kind": null,
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "aiprojeckeyvaulta6075dab",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "createdByToolkit": "cli-v2-1.28.1"
+    },
+    "type": "Microsoft.KeyVault/vaults"
+  },
+  {
+    "changedTime": "2025-07-28T08:21:49.037268+00:00",
+    "createdTime": "2025-07-28T08:11:48.023481+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.OperationalInsights/workspaces/aiprojeclogalyti7f47a670",
+    "identity": null,
+    "kind": "web",
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "aiprojeclogalyti7f47a670",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "createdByToolkit": "cli-v2-1.28.1"
+    },
+    "type": "Microsoft.OperationalInsights/workspaces"
+  },
+  {
+    "changedTime": "2025-07-28T08:22:17.459036+00:00",
+    "createdTime": "2025-07-28T08:11:48.023454+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Storage/storageAccounts/aiprojecstorage228549759",
+    "identity": null,
+    "kind": "StorageV2",
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "aiprojecstorage228549759",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": {
+      "capacity": null,
+      "family": null,
+      "model": null,
+      "name": "Standard_LRS",
+      "size": null,
+      "tier": "Standard"
+    },
+    "tags": {
+      "createdByToolkit": "cli-v2-1.28.1"
+    },
+    "type": "Microsoft.Storage/storageAccounts"
+  },
+  {
+    "changedTime": "2025-07-28T08:22:05.046427+00:00",
+    "createdTime": "2025-07-28T08:12:04.470083+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Insights/components/aiprojecinsights1bacf38a",
+    "identity": null,
+    "kind": "web",
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "aiprojecinsights1bacf38a",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "createdByToolkit": "cli-v2-1.28.1"
+    },
+    "type": "Microsoft.Insights/components"
+  },
+  {
+    "changedTime": "2025-07-28T08:22:36.168324+00:00",
+    "createdTime": "2025-07-28T08:12:18.053548+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.MachineLearningServices/workspaces/ai-project-websearch",
+    "identity": {
+      "principalId": "10b1b812-5921-4b23-84c3-eb7cc7b22ebe",
+      "tenantId": "337f2640-9e04-4ae6-8067-20ca525aa02a",
+      "type": "SystemAssigned",
+      "userAssignedIdentities": null
+    },
+    "kind": "Default",
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "ai-project-websearch",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": {
+      "capacity": null,
+      "family": null,
+      "model": null,
+      "name": "Basic",
+      "size": null,
+      "tier": "Basic"
+    },
+    "systemData": {
+      "createdAt": "2025-07-28T08:12:18.0819984Z",
+      "createdBy": "y.amano@activarch.co.jp",
+      "createdByType": "User",
+      "lastModifiedAt": "2025-07-28T08:12:18.0819984Z",
+      "lastModifiedBy": "y.amano@activarch.co.jp",
+      "lastModifiedByType": "User"
+    },
+    "tags": {
+      "createdByToolkit": "cli-v2-1.28.1"
+    },
+    "type": "Microsoft.MachineLearningServices/workspaces"
+  },
+  {
+    "changedTime": "2025-07-29T12:45:46.949324+00:00",
+    "createdTime": "2025-07-29T12:35:45.205370+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.CognitiveServices/accounts/grounding-bing-japaneast",
+    "identity": {
+      "principalId": "b070bedc-62c6-44f6-bd5c-dc75059c24bd",
+      "tenantId": "337f2640-9e04-4ae6-8067-20ca525aa02a",
+      "type": "SystemAssigned",
+      "userAssignedIdentities": null
+    },
+    "kind": "CognitiveServices",
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "grounding-bing-japaneast",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": {
+      "capacity": null,
+      "family": null,
+      "model": null,
+      "name": "S0",
+      "size": null,
+      "tier": null
+    },
+    "systemData": {
+      "createdAt": "2025-07-29T12:35:45.2282072Z",
+      "createdBy": "y.amano@activarch.co.jp",
+      "createdByType": "User",
+      "lastModifiedAt": "2025-07-29T12:35:45.2282072Z",
+      "lastModifiedBy": "y.amano@activarch.co.jp",
+      "lastModifiedByType": "User"
+    },
+    "tags": null,
+    "type": "Microsoft.CognitiveServices/accounts"
+  },
+  {
+    "changedTime": "2025-08-12T07:11:01.611453+00:00",
+    "createdTime": "2025-07-30T04:44:02.324780+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.CognitiveServices/accounts/ai-agents-service-jp",
+    "identity": {
+      "principalId": "5864e496-33e8-4d0f-8a6e-f95462ddf87b",
+      "tenantId": "337f2640-9e04-4ae6-8067-20ca525aa02a",
+      "type": "SystemAssigned",
+      "userAssignedIdentities": null
+    },
+    "kind": "AIServices",
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "ai-agents-service-jp",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": {
+      "capacity": null,
+      "family": null,
+      "model": null,
+      "name": "S0",
+      "size": null,
+      "tier": null
+    },
+    "systemData": {
+      "createdAt": "2025-07-30T04:44:02.3447452Z",
+      "createdBy": "y.amano@activarch.co.jp",
+      "createdByType": "User",
+      "lastModifiedAt": "2025-08-12T07:00:58.1007692Z",
+      "lastModifiedBy": "y.amano@activarch.co.jp",
+      "lastModifiedByType": "User"
+    },
+    "tags": null,
+    "type": "Microsoft.CognitiveServices/accounts"
+  },
+  {
+    "changedTime": "2025-08-01T14:48:44.567906+00:00",
+    "createdTime": "2025-08-01T14:38:41.775626+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-fhiczxgxabn5k",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "id-fhiczxgxabn5k",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "azd-env-name": "activarch-chatgpt"
+    },
+    "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+  },
+  {
+    "changedTime": "2025-08-07T05:49:13.133379+00:00",
+    "createdTime": "2025-08-01T14:38:43.155781+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/serverFarms/plan-fhiczxgxabn5k",
+    "identity": null,
+    "kind": "linux",
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "plan-fhiczxgxabn5k",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": {
+      "capacity": 1,
+      "family": "B",
+      "model": null,
+      "name": "B1",
+      "size": "B1",
+      "tier": "Basic"
+    },
+    "tags": {
+      "azd-env-name": "activarch-chatgpt"
+    },
+    "type": "Microsoft.Web/serverFarms"
+  },
+  {
+    "changedTime": "2025-08-18T01:30:47.611623+00:00",
+    "createdTime": "2025-08-01T14:38:54.516599+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/app-backend-fhiczxgxabn5k",
+    "identity": {
+      "principalId": null,
+      "tenantId": null,
+      "type": "UserAssigned",
+      "userAssignedIdentities": {
+        "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourcegroups/rg-1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-fhiczxgxabn5k": {
+          "clientId": "a9c6dbb4-3756-4469-bd10-4dc1913ccc32",
+          "principalId": "70c84efe-77e8-4146-a311-ac2b352c87b2"
+        }
+      }
+    },
+    "kind": "app,linux",
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "app-backend-fhiczxgxabn5k",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "azd-env-name": "activarch-chatgpt",
+      "azd-service-name": "backend",
+      "hidden-link: /app-insights-resource-id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/microsoft.insights/components/aiprojecinsights1bacf38a"
+    },
+    "type": "Microsoft.Web/sites"
+  },
+  {
+    "changedTime": "2025-08-03T11:38:26.598154+00:00",
+    "createdTime": "2025-08-03T11:25:59.115079+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.CognitiveServices/accounts/ai-agents-service-jp/projects/ai-agents-service-jp-AAAL",
+    "identity": {
+      "principalId": "c47c9f4d-f964-459d-91d8-ca0957856ac1",
+      "tenantId": "337f2640-9e04-4ae6-8067-20ca525aa02a",
+      "type": "SystemAssigned",
+      "userAssignedIdentities": null
+    },
+    "kind": "AIServices",
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "ai-agents-service-jp/ai-agents-service-jp-AAAL",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "systemData": {
+      "createdAt": "2025-08-03T11:25:59.1324519Z",
+      "createdBy": "y.amano@activarch.co.jp",
+      "createdByType": "User",
+      "lastModifiedAt": "2025-08-03T11:25:59.1324519Z",
+      "lastModifiedBy": "y.amano@activarch.co.jp",
+      "lastModifiedByType": "User"
+    },
+    "tags": null,
+    "type": "Microsoft.CognitiveServices/accounts/projects"
+  },
+  {
+    "changedTime": "2025-08-03T13:17:34.923531+00:00",
+    "createdTime": "2025-08-03T12:31:53.418563+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Bing/accounts/grounding-bing-fhiczxgxabn5k",
+    "identity": null,
+    "kind": "Bing.Grounding",
+    "location": "global",
+    "managedBy": null,
+    "name": "grounding-bing-fhiczxgxabn5k",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": {
+      "capacity": null,
+      "family": null,
+      "model": null,
+      "name": "G1",
+      "size": null,
+      "tier": null
+    },
+    "tags": {
+      "operation": "Fee"
+    },
+    "type": "Microsoft.Bing/accounts"
+  },
+  {
+    "changedTime": "2025-08-19T04:18:30.122202+00:00",
+    "createdTime": "2025-08-04T08:34:55.361028+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/virtualNetworks/vnet-fhiczxgxabn5k",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "vnet-fhiczxgxabn5k",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "azd-env-name": "activarch-chatgpt"
+    },
+    "type": "Microsoft.Network/virtualNetworks"
+  },
+  {
+    "changedTime": "2025-08-05T06:23:05.699736+00:00",
+    "createdTime": "2025-08-05T06:11:59.332405+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/vnet-fhiczxgxabn5k-link",
+    "identity": null,
+    "kind": null,
+    "location": "global",
+    "managedBy": null,
+    "name": "privatelink.search.windows.net/vnet-fhiczxgxabn5k-link",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+  },
+  {
+    "changedTime": "2025-08-05T11:41:45.160374+00:00",
+    "createdTime": "2025-08-05T11:31:44.352683+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/networkInterfaces/pe-search-5b5qpqbzmgmdu.nic.6b953347-889d-4ae3-9583-7a018d57522d",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateEndpoints/pe-search-5b5qpqbzmgmdu",
+    "name": "pe-search-5b5qpqbzmgmdu.nic.6b953347-889d-4ae3-9583-7a018d57522d",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/networkInterfaces"
+  },
+  {
+    "changedTime": "2025-08-05T13:56:48.967144+00:00",
+    "createdTime": "2025-08-05T13:31:12.186850+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-fhiczxgxabn5k",
+    "identity": {
+      "principalId": null,
+      "tenantId": null,
+      "type": "None",
+      "userAssignedIdentities": null
+    },
+    "kind": "GlobalDocumentDB",
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "cosmos-fhiczxgxabn5k",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "systemData": {
+      "createdAt": "2025-08-05T13:32:32.899854Z"
+    },
+    "tags": {
+      "azd-env-name": "activarch-chatgpt"
+    },
+    "type": "Microsoft.DocumentDB/databaseAccounts"
+  },
+  {
+    "changedTime": "2025-08-12T04:33:30.577268+00:00",
+    "createdTime": "2025-08-12T04:23:03.822252+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateEndpoints/ai-agents-private-endpoint",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "ai-agents-private-endpoint",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/privateEndpoints"
+  },
+  {
+    "changedTime": "2025-08-12T04:33:16.424448+00:00",
+    "createdTime": "2025-08-12T04:23:16.217167+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/networkInterfaces/ai-agents-private-endpoint.nic.3693f5f3-a045-49da-87da-d7f475a93b5c",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateEndpoints/ai-agents-private-endpoint",
+    "name": "ai-agents-private-endpoint.nic.3693f5f3-a045-49da-87da-d7f475a93b5c",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/networkInterfaces"
+  },
+  {
+    "changedTime": "2025-08-12T06:44:52.047159+00:00",
+    "createdTime": "2025-08-12T05:16:01.552698+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com/virtualNetworkLinks/vnet-fhiczxgxabn5k-link",
+    "identity": null,
+    "kind": null,
+    "location": "global",
+    "managedBy": null,
+    "name": "privatelink.openai.azure.com/vnet-fhiczxgxabn5k-link",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+  },
+  {
+    "changedTime": "2025-08-12T08:51:53.196400+00:00",
+    "createdTime": "2025-08-12T08:41:29.320333+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateEndpoints/pe-openai-appservice",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "pe-openai-appservice",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/privateEndpoints"
+  },
+  {
+    "changedTime": "2025-08-12T08:51:40.944151+00:00",
+    "createdTime": "2025-08-12T08:41:40.457922+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/networkInterfaces/pe-openai-appservice.nic.75fc005a-c922-4595-a242-b322bc43a3ec",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Network/privateEndpoints/pe-openai-appservice",
+    "name": "pe-openai-appservice.nic.75fc005a-c922-4595-a242-b322bc43a3ec",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Network/networkInterfaces"
+  },
+  {
+    "changedTime": "2025-08-14T23:52:44.718128+00:00",
+    "createdTime": "2025-08-14T23:42:25.516270+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/certificates/www.amaris.activarch.co.jp-app-backend-fhiczxgxabn5k",
+    "identity": null,
+    "kind": null,
+    "location": "japanwest",
+    "managedBy": null,
+    "name": "www.amaris.activarch.co.jp-app-backend-fhiczxgxabn5k",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": null,
+    "type": "Microsoft.Web/certificates"
+  },
+  {
+    "changedTime": "2025-08-18T01:15:45.338570+00:00",
+    "createdTime": "2025-08-18T01:05:42.588090+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Portal/dashboards/3b221b3c-ff15-464b-a9c0-bb82bf0a4b7e-dashboard",
+    "identity": null,
+    "kind": null,
+    "location": "japaneast",
+    "managedBy": null,
+    "name": "3b221b3c-ff15-464b-a9c0-bb82bf0a4b7e-dashboard",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg-1",
+    "sku": null,
+    "tags": {
+      "hidden-title": "aiprojecinsights1bacf38a Dashboard"
+    },
+    "type": "Microsoft.Portal/dashboards"
+  }
+]

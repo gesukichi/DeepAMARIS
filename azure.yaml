@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: sample-app-aoai-chatgpt
+metadata:
+  template: sample-app-aoai-chatgpt@0.0.1-beta
+services:
+  backend:
+    project: .
+    language: py
+    host: appservice
+    # DEPLOYMENT ONLY - NO INFRASTRUCTURE PROVISIONING
+    # Exclude .venv and other development files from deployment
+    ignore:
+      - .venv/
+      - .venv
+      - node_modules/
+      - __pycache__/
+      - .git/
+      - .azure/
+      - frontend/
+      - "*.pyc"
+      - .env.local
+      - .pytest_cache/
+      - infra/
+      - infrastructure/
+    env:
+      WEBSITE_RUN_FROM_PACKAGE: "1"
+      SCM_DO_BUILD_DURING_DEPLOYMENT: "true"
+      WEBSITES_ENABLE_APP_SERVICE_STORAGE: "false"
+    hooks:
+      prepackage:
+        windows:
+          shell: pwsh
+          run: |
+            if (-not (Test-Path "./frontend/dist") -or ((Get-ChildItem "./frontend/src" -Recurse | Measure-Object -Property LastWriteTime -Maximum).Maximum -gt (Get-ChildItem "./frontend/dist" -Recurse | Measure-Object -Property LastWriteTime -Maximum).Maximum)) {
+              Write-Host "Building frontend..."
+              cd ./frontend
+              if (-not (Test-Path "node_modules")) { 
+                Write-Host "Installing npm dependencies with cache optimization..."
+                npm cache verify
+                npm ci --prefer-offline --no-audit --cache .npm 
+              }
+              Write-Host "Building frontend application..."
+              npm run build
+            } else {
+              Write-Host "Frontend build is up to date, skipping..."
+            }
+          interactive: true
+          continueOnError: true
+        posix:
+          shell: sh
+          run: |
+            if [ ! -d "./frontend/dist" ] || [ "$(find ./frontend/src -newer ./frontend/dist -print -quit)" ]; then
+              echo "Building frontend..."
+              cd ./frontend
+              if [ ! -d "node_modules" ]; then
+                echo "Installing npm dependencies with cache optimization..."
+                npm cache verify
+                npm ci --prefer-offline --no-audit --cache .npm
+              fi
+              echo "Building frontend application..."
+              npm run build
+            else
+              echo "Frontend build is up to date, skipping..."
+            fi
+          interactive: true
+          continueOnError: true
+# NO INFRASTRUCTURE HOOKS - DEPLOYMENT ONLY TO EXISTING RESOURCES
+        interactive: true
+        continueOnError: false
+      posix:
+        shell: sh
+        run: |
+          ./scripts/auth_update.sh
+          # インデックスが存在しない場合のみドキュメント準備を実行
+          if ! az search index show --service-name $AZURE_SEARCH_SERVICE --name $AZURE_SEARCH_INDEX --query "name" --output tsv >/dev/null 2>&1; then
+            echo "Creating search index and uploading documents..."
+            ./scripts/prepdocs.sh
+          else
+            echo "Search index already exists, skipping document preparation..."
+          fi
+        interactive: true
+        continueOnError: false

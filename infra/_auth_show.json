@@ -1,0 +1,13 @@
+{
+  "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/func-search-proxy-AAAL/config/authsettingsV2",
+  "location": "Japan West",
+  "name": "authsettingsV2",
+  "properties": {
+    "platform": {
+      "enabled": false
+    }
+  },
+  "resourceGroup": "rg-1",
+  "tags": {},
+  "type": "Microsoft.Web/sites/config"
+}

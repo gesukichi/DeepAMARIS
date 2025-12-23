@@ -1,0 +1,11 @@
+{
+  "name": "AOAI-CHATGPT",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -n APP,AZ \"next dev\" \"pnpm run logs:azure\"",
+    "logs:azure": "az webapp log tail --name app-backend-fhiczxgxabn5k --resource-group rg-1"
+  }
+}

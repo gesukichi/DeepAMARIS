@@ -1,0 +1,2 @@
+Host: https://System.Management.Automation.Internal.Host.InternalHost
+HTTP ERROR: そのようなホストは不明です。 (system.management.automation.internal.host.internalhost:443)

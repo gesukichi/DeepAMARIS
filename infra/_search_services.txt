@@ -1,0 +1,3 @@
+Name                 Rg    Location
+-------------------  ----  ----------
+gptkb-5b5qpqbzmgmdu  rg-1  japanwest

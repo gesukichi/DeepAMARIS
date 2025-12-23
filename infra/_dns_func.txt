@@ -1,0 +1,27 @@
+
+Name                           Type   TTL   Section    NameHost
+----                           ----   ---   -------    --------
+func-search-proxy-aaal.azurewe CNAME  60    Answer     waws-prod-os1-039.sip.azurewebsites.windows.net
+bsites.net
+waws-prod-os1-039.sip.azureweb CNAME  60    Answer     waws-prod-os1-039-9f32.japanwest.cloudapp.azure.com
+sites.windows.net
+
+Name       : waws-prod-os1-039-9f32.japanwest.cloudapp.azure.com
+QueryType  : A
+TTL        : 10
+Section    : Answer
+IP4Address : 40.74.100.143
+
+
+Name                   : japanwest.cloudapp.azure.com
+QueryType              : SOA
+TTL                    : 60
+Section                : Authority
+NameAdministrator      : msnhst.microsoft.com
+SerialNumber           : 10001
+TimeToZoneRefresh      : 900
+TimeToZoneFailureRetry : 300
+TimeToExpiration       : 604800
+DefaultTTL             : 60
+
+

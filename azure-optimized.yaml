@@ -1,0 +1,195 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: sample-app-aoai-chatgpt-optimized
+metadata:
+  template: sample-app-aoai-chatgpt-optimized@1.0.0
+services:
+  backend:
+    project: .
+    language: py
+    host: appservice
+    env:
+      WEBSITE_RUN_FROM_PACKAGE: "1"
+      SCM_DO_BUILD_DURING_DEPLOYMENT: "false"
+      WEBSITES_ENABLE_APP_SERVICE_STORAGE: "false"
+      # デプロイ時間短縮のための最適化設定
+      WEBSITE_WEBDEPLOY_USE_SCM: "false"
+      WEBSITE_SKIP_CONTENTSHARE_VALIDATION: "1"
+    hooks:
+      prepackage:
+        windows:
+          shell: pwsh
+          run: |
+            Write-Host "=== デプロイ最適化: 軽量ビルドプロセス開始 ==="
+            
+            # grpcio問題対策: プリコンパイル済みwheel強制使用
+            Write-Host "grpcio問題対策: プリコンパイル済みバイナリを優先設定"
+            $env:PIP_ONLY_BINARY="grpcio,numpy,pandas"
+            $env:PIP_NO_BUILD_ISOLATION="false"
+            
+            # フロントエンドビルド状況確認（スキップ条件を緩和）
+            $frontendExists = Test-Path "./frontend/dist"
+            $shouldBuild = $true
+            
+            if ($frontendExists) {
+              # ビルド済みの場合は時間チェックをスキップ（デプロイ時間短縮）
+              Write-Host "フロントエンドビルドが存在します。デプロイ時間短縮のためリビルドをスキップします。"
+              $shouldBuild = $false
+            }
+            
+            if ($shouldBuild) {
+              Write-Host "フロントエンドビルドを開始..."
+              cd ./frontend
+              
+              # キャッシュ最適化設定
+              if (-not (Test-Path "node_modules")) { 
+                Write-Host "npm依存関係をキャッシュ最適化でインストール中..."
+                $env:npm_config_prefer_offline="true"
+                $env:npm_config_cache_min="86400"
+                npm ci --silent --no-audit --no-fund --prefer-offline
+              } else {
+                Write-Host "node_modules存在、インストールスキップ"
+              }
+              
+              Write-Host "本番ビルド実行中..."
+              npm run build --silent
+              cd ..
+            }
+            
+            # 本番用requirements.txtへの切り替え
+            if (Test-Path "./requirements-production.txt") {
+              Write-Host "本番用requirements.txtに切り替え中..."
+              Copy-Item "./requirements-production.txt" "./requirements.txt" -Force
+            }
+            
+            Write-Host "=== デプロイ最適化: ビルドプロセス完了 ==="
+          interactive: true
+          continueOnError: false
+        posix:
+          shell: sh
+          run: |
+            echo "=== デプロイ最適化: 軽量ビルドプロセス開始 ==="
+        
+        # grpcio問題対策: プリコンパイル済みwheel強制使用
+        echo "grpcio問題対策: プリコンパイル済みバイナリを優先設定"
+        export PIP_ONLY_BINARY="grpcio,numpy,pandas"
+        export PIP_NO_BUILD_ISOLATION="false"
+            
+            # フロントエンドビルド状況確認
+            if [ -d "./frontend/dist" ]; then
+              echo "フロントエンドビルドが存在します。デプロイ時間短縮のためリビルドをスキップします。"
+            else
+              echo "フロントエンドビルドを開始..."
+              cd ./frontend
+              
+              if [ ! -d "node_modules" ]; then
+                echo "npm依存関係をキャッシュ最優先でインストール中..."
+                export npm_config_prefer_offline=true
+                export npm_config_cache_min=86400
+                npm ci --silent --no-audit --no-fund --prefer-offline
+              else
+                echo "node_modules存在、インストールスキップ"
+              fi
+              
+              echo "本番ビルド実行中..."
+              npm run build --silent
+              cd ..
+            fi
+            
+            # 本番用requirements.txtへの切り替え
+            if [ -f "./requirements-production.txt" ]; then
+              echo "本番用requirements.txtに切り替え中..."
+              cp "./requirements-production.txt" "./requirements.txt"
+            fi
+            
+            echo "=== デプロイ最適化: ビルドプロセス完了 ==="
+          interactive: true
+          continueOnError: false
+
+hooks:
+  preprovision:
+    windows:
+      shell: pwsh
+      run: |
+        Write-Host "=== 事前プロビジョニング: 認証設定開始 ==="
+        if (Test-Path "./scripts/auth_init.ps1") {
+          ./scripts/auth_init.ps1
+        } else {
+          Write-Host "認証初期化スクリプトが見つかりません。スキップします。"
+        }
+      interactive: true
+      continueOnError: true
+    posix:
+      shell: sh
+      run: |
+        echo "=== 事前プロビジョニング: 認証設定開始 ==="
+        if [ -f "./scripts/auth_init.sh" ]; then
+          ./scripts/auth_init.sh
+        else
+          echo "認証初期化スクリプトが見つかりません。スキップします。"
+        fi
+      interactive: true
+      continueOnError: true
+
+  postprovision:
+    windows:
+      shell: pwsh
+      run: |
+        Write-Host "=== 事後プロビジョニング: 最小設定のみ実行 ==="
+        
+        # 認証設定
+        if (Test-Path "./scripts/auth_update.ps1") {
+          ./scripts/auth_update.ps1
+        }
+        
+        # 検索インデックス確認（条件付き実行で時間短縮）
+        $indexExists = $false
+        try {
+          $indexCheck = az search index show --service-name $env:AZURE_SEARCH_SERVICE --name $env:AZURE_SEARCH_INDEX --query "name" --output tsv 2>$null
+          if ($indexCheck) { $indexExists = $true }
+        } catch {
+          Write-Host "検索サービス確認に失敗しました。新規作成を試行します。"
+        }
+        
+        if (-not $indexExists) {
+          Write-Host "検索インデックスを作成中..."
+          if (Test-Path "./scripts/prepdocs.ps1") {
+            # タイムアウト制御を追加
+            $job = Start-Job -ScriptBlock { 
+              Set-Location $using:PWD
+              ./scripts/prepdocs.ps1 
+            }
+            Wait-Job $job -Timeout 300  # 5分制限
+            Receive-Job $job
+            Remove-Job $job -Force
+          }
+        } else {
+          Write-Host "検索インデックス存在確認済み、ドキュメント準備をスキップします。"
+        }
+        
+        Write-Host "=== 事後プロビジョニング完了 ==="
+      interactive: true
+      continueOnError: true
+    posix:
+      shell: sh
+      run: |
+        echo "=== 事後プロビジョニング: 最小設定のみ実行 ==="
+        
+        # 認証設定
+        if [ -f "./scripts/auth_update.sh" ]; then
+          ./scripts/auth_update.sh
+        fi
+        
+        # 検索インデックス確認
+        if ! az search index show --service-name $AZURE_SEARCH_SERVICE --name $AZURE_SEARCH_INDEX --query "name" --output tsv >/dev/null 2>&1; then
+          echo "検索インデックスを作成中..."
+          if [ -f "./scripts/prepdocs.sh" ]; then
+            timeout 300 ./scripts/prepdocs.sh  # 5分制限
+          fi
+        else
+          echo "検索インデックス存在確認済み、ドキュメント準備をスキップします。"
+        fi
+        
+        echo "=== 事後プロビジョニング完了 ==="
+      interactive: true
+      continueOnError: true

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "contentAzureFileConnectionString": {
+      "value": ""
+    },
+    "contentShareName": {
+      "value": ""
+    },
+    "location": {
+      "value": "japanwest"
+    },
+    "createRoleAssignments": {
+      "value": false
+    },
+    "name": {
+      "value": "func-search-proxy-AAAL"
+    },
+    "azureWebJobsStorage": {
+      "value": ""
+    },
+    "appServicePlanId": {
+      "value": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/serverfarms/plan-fhiczxgxabn5k"
+    },
+    "userAssignedIdentityPrincipalId": {
+      "value": ""
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": ""
+    },
+    "userAssignedIdentityId": {
+      "value": ""
+    }
+  }
+}

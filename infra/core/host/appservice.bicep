@@ -1,0 +1,134 @@
+param name string
+param location string = resourceGroup().location
+param tags object = {}
+
+// Reference Properties
+param appServicePlanId string
+param keyVaultName string = ''
+param managedIdentity bool = !empty(keyVaultName)
+param userAssignedIdentityId string = ''
+
+// Runtime Properties
+@allowed([
+  'dotnet', 'dotnetcore', 'dotnet-isolated', 'node', 'python', 'java', 'powershell', 'custom'
+])
+param runtimeName string
+param runtimeNameAndVersion string = '${runtimeName}|${runtimeVersion}'
+param runtimeVersion string = '3.12'
+
+// Microsoft.Web/sites Properties
+param kind string = 'app,linux'
+
+// Microsoft.Web/sites/config
+param allowedOrigins array = []
+param alwaysOn bool = true
+param appCommandLine string = ''
+param appSettings object = {}
+param authClientId string
+@secure()
+param authClientSecret string
+param authIssuerUri string
+param clientAffinityEnabled bool = false
+param enableOryxBuild bool = contains(kind, 'linux')
+param functionAppScaleLimit int = -1
+param linuxFxVersion string = runtimeNameAndVersion
+param minimumElasticInstanceCount int = -1
+param numberOfWorkers int = -1
+param scmDoBuildDuringDeployment bool = false
+param use32BitWorkerProcess bool = false
+param ftpsState string = 'FtpsOnly'
+param healthCheckPath string = ''
+param virtualNetworkSubnetId string = ''
+
+resource appService 'Microsoft.Web/sites@2022-03-01' = {
+  name: name
+  location: location
+  tags: tags
+  kind: kind
+  properties: {
+    serverFarmId: appServicePlanId
+    virtualNetworkSubnetId: !empty(virtualNetworkSubnetId) ? virtualNetworkSubnetId : null
+    siteConfig: {
+      linuxFxVersion: linuxFxVersion
+      alwaysOn: alwaysOn
+      ftpsState: ftpsState
+      appCommandLine: appCommandLine
+      numberOfWorkers: numberOfWorkers != -1 ? numberOfWorkers : null
+      minimumElasticInstanceCount: minimumElasticInstanceCount != -1 ? minimumElasticInstanceCount : null
+      use32BitWorkerProcess: use32BitWorkerProcess
+      functionAppScaleLimit: functionAppScaleLimit != -1 ? functionAppScaleLimit : null
+      healthCheckPath: healthCheckPath
+      cors: {
+        allowedOrigins: union([ 'https://portal.azure.com', 'https://ms.portal.azure.com' ], allowedOrigins)
+      }
+    }
+    clientAffinityEnabled: clientAffinityEnabled
+    httpsOnly: true
+  }
+
+  identity: managedIdentity ? {
+    type: !empty(userAssignedIdentityId) ? 'UserAssigned' : 'SystemAssigned'
+    userAssignedIdentities: !empty(userAssignedIdentityId) ? {
+      '${userAssignedIdentityId}': {}
+    } : null
+  } : { type: 'None' }
+
+  resource configAppSettings 'config' = {
+    name: 'appsettings'
+    properties: union(appSettings,
+      {
+        SCM_DO_BUILD_DURING_DEPLOYMENT: string(scmDoBuildDuringDeployment)
+        ENABLE_ORYX_BUILD: string(enableOryxBuild)
+      },
+      !empty(authClientSecret) ? { AUTH_CLIENT_SECRET: authClientSecret } : {}
+    )
+  }
+
+  resource configLogs 'config' = {
+    name: 'logs'
+    properties: {
+      applicationLogs: { fileSystem: { level: 'Verbose' } }
+      detailedErrorMessages: { enabled: true }
+      failedRequestsTracing: { enabled: true }
+      httpLogs: { fileSystem: { enabled: true, retentionInDays: 1, retentionInMb: 35 } }
+    }
+    dependsOn: [
+      configAppSettings
+    ]
+  }
+
+  resource configAuth 'config' = if (!(empty(authClientId))) {
+    name: 'authsettingsV2'
+    properties: {
+      globalValidation: {
+        requireAuthentication: true
+        unauthenticatedClientAction: 'RedirectToLoginPage'
+        redirectToProvider: 'azureactivedirectory'
+      }
+      identityProviders: {
+        azureActiveDirectory: {
+          enabled: true
+          registration: {
+            clientId: authClientId
+            clientSecretSettingName: 'AUTH_CLIENT_SECRET'
+            openIdIssuer: authIssuerUri
+          }
+          validation: {
+            defaultAuthorizationPolicy: {
+              allowedApplications: []
+            }
+          }
+        }
+      }
+      login: {
+        tokenStore: {
+          enabled: true
+        }
+      }
+    }
+  }
+}
+
+output identityPrincipalId string = ''
+output name string = appService.name
+output uri string = 'https://${appService.properties.defaultHostName}'

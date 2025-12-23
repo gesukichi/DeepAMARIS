@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "your-environment-name"
+    },
+    "location": {
+      "value": "japaneast"
+    },
+    "principalId": {
+      "value": "your-principal-id"
+    },
+    "openAiResourceName": {
+      "value": "your-openai-resource-name"
+    },
+    "openAiResourceGroupName": {
+      "value": "your-openai-resource-group"
+    },
+    "openAiSkuName": {
+      "value": "S0"
+    },
+    "searchServiceName": {
+      "value": "your-search-service-name"
+    },
+    "searchServiceResourceGroupName": {
+      "value": "your-search-resource-group"
+    },
+    "searchServiceSkuName": {
+      "value": "standard"
+    },
+    "formRecognizerServiceName": {
+      "value": "your-form-recognizer-service"
+    },
+    "formRecognizerResourceGroupName": {
+      "value": "your-form-recognizer-resource-group"
+    },
+    "formRecognizerSkuName": {
+      "value": "S0"
+    },
+    "authClientId": {
+      "value": "your-auth-client-id"
+    },
+    "authClientSecret": {
+      "value": "your-auth-client-secret"
+    }
+  }
+}

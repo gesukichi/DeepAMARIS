@@ -1,0 +1,152 @@
+# Azure Functions ignore file
+# Task 19: Azure Functions設定ファイル更新の一部
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Azure Functions アーティファクト  
+bin
+obj
+appsettings.json
+local.settings.json
+
+# Python仮想環境
+.venv/
+venv/
+
+# テストファイル
+tests/
+*.test.py
+*_test.py
+
+# ドキュメント
+docs/
+*.md
+*.rst
+
+# 開発用ファイル
+*.log
+.DS_Store
+Thumbs.db
+
+# デプロイ時間短縮のための追加除外設定
+# ログファイル・バックアップファイル
+app-logs/
+latest-logs/
+logs/
+*backup*
+*-backup-*
+temp-*
+*.bak
+
+# フロントエンド開発ファイル（ビルド済みのみ使用）
+frontend/node_modules/
+frontend/src/
+frontend/*.config.*
+frontend/.eslint*
+frontend/.prettier*
+frontend/jest.config.ts
+frontend/build-log.txt
+
+# 設定ファイルバックアップ
+*-config-*.json
+auth-config*.json
+search-config-backup*.json
+network-update.json
+quota-request-template.json
+temp-config.json
+
+# デプロイ関連ドキュメント・スクリプト
+deploy_*.md
+DEPLOYMENT_*.md
+TIMEOUT_*.md
+*.sh
+*.ps1
+*.cmd
+*.bat
+scripts/
+deploy_scripts/
+
+# データ・テンプレートファイル
+data/
+postman/
+temp-*/
+notebooks/
+
+# インフラ定義
+infra/
+infrastructure/
+
+# その他不要ファイル
+CODE_OF_CONDUCT.md
+LICENSE
+SECURITY.md
+SUPPORT.md
+response.html
+response.json
+openapi_*.html
+openapi_*.json
+test_*.md
+investigation_*.md
+TDD_*.md
+HTTP_STATUS_*.md
+modified_files_list.txt
+*.example.json
+
+# キープするファイル（除外から除外）
+!host.json
+!requirements.txt
+!package.json
+!azure.yaml

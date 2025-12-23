@@ -1,0 +1,145 @@
+.questionInputContainer {
+  min-height: 120px;    /* 画像アイコン非表示により元のサイズに戻す */
+  height: auto;
+  position: absolute;
+  left: 6.5%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background: #ffffff;
+  box-shadow:
+    0px 8px 16px rgba(0, 0, 0, 0.14),
+    0px 0px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  /* 2つの要素（トグル + 送信）用のパディング */
+  padding-bottom: 50px;  /* 適度なスペースを確保 */
+}
+
+.questionInputTextArea {
+  width: 100%;
+  line-height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.questionInputSendButtonContainer {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;         /* 画像アイコンがないのでより下に配置 */
+}
+
+.questionInputSendButton {
+  width: 24px;
+  height: 23px;
+}
+
+.questionInputSendButtonDisabled {
+  /* opacity: 0.4; */
+  width: 24px;
+  height: 23px;
+  background: none;
+  color: #424242;
+}
+
+.questionInputBottomBorder {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  left: 0%;
+  bottom: 0%;
+  background: radial-gradient(106.04% 106.06% at 100.1% 90.19%, #0f6cbd 33.63%, #8dddd8 100%);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.questionInputOptionsButton {
+  cursor: pointer;
+  width: 27px;
+  height: 30px;
+}
+
+@media (max-width: 480px) {
+  .questionInputContainer {
+    left: 16.5%;
+  }
+}
+
+.fileInputContainer {
+  position: absolute;
+  right: 24px;
+  top: 50px;            /* トグルスイッチの下に配置するため位置を下げる */
+}
+
+.fileInput {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.fileLabel {
+  display: inline-block;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+}
+
+.fileIcon {
+  font-size: 20px;
+  color: #424242;
+}
+
+.uploadedImage {
+  margin-right: 70px;
+}
+
+/* 🆕 モード切り替えスイッチのスタイル */
+.modeSwitchContainer {
+  position: absolute;
+  right: 24px;          /* 他の要素と横位置を合わせる */
+  top: 20px;            /* 一番上に配置 */
+  z-index: 10;
+  
+  /* 背景とボーダーを削除 */
+  background-color: transparent;
+  backdrop-filter: none;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  
+  /* アニメーション */
+  transition: all 0.2s ease-in-out;
+}
+
+.modeSwitchContainer:hover {
+  /* ホバー時も背景を表示しない */
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.modeToggle {
+  /* Toggleコンポーネントのカスタマイズ */
+  margin: 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .modeSwitchContainer {
+    right: 22px;         /* 小画面では少し調整 */
+    top: 18px;           /* 少し調整 */
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .modeSwitchContainer {
+    right: 20px;         /* さらに小画面では調整 */
+    top: 16px;           /* 小画面用調整 */
+  }
+}

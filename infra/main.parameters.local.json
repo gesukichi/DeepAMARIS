@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "AAAL"
+    },
+    "location": {
+      "value": "japanwest"
+    },
+    "principalId": {
+      "value": ""
+    },
+    "resourceGroupName": {
+      "value": "rg-1"
+    },
+    "openAiResourceName": {
+      "value": "cog-5b5qpqbzmgmdu"
+    },
+    "appServicePlanName": {
+      "value": "plan-fhiczxgxabn5k"
+    },
+    "allowAppServicePlanCreation": {
+      "value": false
+    },
+    "openAiResourceGroupName": {
+      "value": "rg-1"
+    },
+    "searchServiceName": {
+      "value": "gptkb-5b5qpqbzmgmdu"
+    },
+    "searchServiceResourceGroupName": {
+      "value": "rg-1"
+    },
+    "searchServiceSkuName": {
+      "value": "standard"
+    },
+    "formRecognizerServiceName": {
+      "value": "cog-fr-5b5qpqbzmgmdu"
+    },
+    "formRecognizerResourceGroupName": {
+      "value": "rg-1"
+    },
+    "logAnalyticsName": {
+  "value": "aiprojeclogalyti7f47a670"
+    },
+    "formRecognizerSkuName": {
+      "value": "S0"
+    },
+    "authClientId": {
+      "value": ""
+    },
+    "authClientSecret": {
+      "value": ""
+    },
+    "openAIModel": {
+      "value": ""
+    },
+    "openAIModelName": {
+      "value": ""
+    },
+    "azureAIAgentKey": {
+      "value": ""
+    },
+    "bingGroundingConnId": {
+      "value": ""
+    },
+    "enablePrivateNetworking": {
+      "value": false
+    }
+  }
+}

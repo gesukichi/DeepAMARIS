@@ -1,0 +1,153 @@
+# Azure Deploy ignore file
+# デプロイから除外するファイルとディレクトリ
+
+# 一次対応で追加した一時ファイル（デプロイ対象外）
+frontend_only_app.py
+requirements_frontend_only.txt
+gunicorn_frontend.conf.py
+requirements-minimal.txt
+webapp-logs.zip
+latest-webapp-logs.zip
+latest-logs-check/
+
+# Python 仮想環境
+.venv/
+venv/
+env/
+ENV/
+
+# Node.js 依存関係
+frontend/node_modules/
+node_modules/
+
+# ログファイル
+logs/
+app-logs/
+latest-logs/
+logs-latest/
+*.log
+*.log.*
+
+# キャッシュファイル
+__pycache__/
+.pytest_cache/
+.cache/
+*.pyc
+*.pyo
+
+# 開発用ファイル
+.git/
+.gitignore
+.env
+.env.*
+!.env.template
+!.env.sample
+
+# バックアップファイル
+backup/
+*backup*/
+*.bak
+
+# 一時ファイル
+*.tmp
+*.temp
+temp-*
+
+# テストファイル
+network_test_log_*.json
+test_secrets.txt
+
+# IDEファイル
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Azure関連の一時ファイル
+.azure/
+
+# 証明書ファイル
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+
+# ZIP ファイル
+*.zip
+
+# ドキュメント（必要に応じて調整）
+doc/
+docs/
+*.md
+!README.md
+archive/
+
+# Jupyter Notebook チェックポイント
+.ipynb_checkpoints/
+
+# 機密設定ファイル
+auth-config*.json
+webapp-auth*.json
+azd-env-values.txt
+azd-env-list.txt
+webapp-full-config.json
+webapp-runtime-config.json
+env-values.txt
+
+# レスポンスファイル
+response.html
+response.json
+
+# 調査用ファイル
+investigation_report_*.md
+*_report.md
+
+# データベース・データファイル
+*.db
+*.sqlite
+*.sqlite3
+
+# ビルド成果物
+build/
+dist/
+out/
+
+# 設定ファイル（機密情報含む）
+config/
+*.conf
+*.config
+!requirements*.txt
+
+# NOTE: infra/ と infrastructure/ は Azure デプロイに必要なのでコメントアウト
+# infra/              # Bicep テンプレート（デプロイ必須）
+# infrastructure/     # ARM テンプレート（デプロイ必須）
+
+# スクリプト（一部除外）
+deploy_scripts/
+scripts/
+
+# 開発・テスト用
+notebooks/
+postman/
+temp-*/
+*-temp/
+
+# 実行ファイル・スクリプト（必要なもの以外除外）
+*.bat
+*.cmd
+*.ps1
+!start.sh
+!start.cmd
+
+# インフラの一部除外（.python_packages はビルド済みなので除外）
+infra/searchfuncapp/.python_packages/
+
+# Dockerfile (App Service用は不要)
+*.Dockerfile
+*.dockerignore
+
+# プリコンパイル済みファイル
+*.so
+*.dll
+*.dylib

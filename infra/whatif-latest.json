@@ -1,0 +1,234 @@
+Note: The result may contain false positive predictions (noise).
+You can help us improve the accuracy of the result by opening an issue here: https://aka.ms/WhatIfIssues
+
+Resource and property changes are indicated with this symbol:
+  + Create
+
+The deployment will update the following scopes:
+
+Scope: /subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37
+
+  + resourceGroups/rg-wf [2021-04-01]
+
+      apiVersion:        "2021-04-01"
+      id:                "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf"
+      location:          "japaneast"
+      name:              "rg-wf"
+      tags.azd-env-name: "wf"
+      type:              "Microsoft.Resources/resourceGroups"
+
+Scope: /subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf
+
+  + Microsoft.CognitiveServices/accounts/cog-fr-gks6sz3ermxcu [2023-05-01]
+
+      apiVersion:                           "2023-05-01"
+      id:                                   "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.CognitiveServices/accounts/cog-fr-gks6sz3ermxcu"
+      kind:                                 "FormRecognizer"
+      location:                             "japaneast"
+      name:                                 "cog-fr-gks6sz3ermxcu"
+      properties.customSubDomainName:       "cog-fr-gks6sz3ermxcu"
+      properties.networkAcls.defaultAction: "Allow"
+      properties.publicNetworkAccess:       "Enabled"
+      sku.name:                             "S0"
+      tags.azd-env-name:                    "wf"
+      type:                                 "Microsoft.CognitiveServices/accounts"
+
+  + Microsoft.ManagedIdentity/userAssignedIdentities/id-gks6sz3ermxcu [2023-01-31]
+
+      apiVersion:        "2023-01-31"
+      id:                "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-gks6sz3ermxcu"
+      location:          "japaneast"
+      name:              "id-gks6sz3ermxcu"
+      tags.azd-env-name: "wf"
+      type:              "Microsoft.ManagedIdentity/userAssignedIdentities"
+
+  + Microsoft.OperationalInsights/workspaces/log-gks6sz3ermxcu [2022-10-01]
+
+      apiVersion:                                 "2022-10-01"
+      id:                                         "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.OperationalInsights/workspaces/log-gks6sz3ermxcu"
+      location:                                   "japaneast"
+      name:                                       "log-gks6sz3ermxcu"
+      properties.publicNetworkAccessForIngestion: "Enabled"
+      properties.publicNetworkAccessForQuery:     "Enabled"
+      properties.retentionInDays:                 30
+      properties.sku.name:                        "PerGB2018"
+      tags.azd-env-name:                          "wf"
+      type:                                       "Microsoft.OperationalInsights/workspaces"
+
+  + Microsoft.Search/searchServices/gptkb-gks6sz3ermxcu [2021-04-01-preview]
+
+      apiVersion:                                            "2021-04-01-preview"
+      id:                                                    "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Search/searchServices/gptkb-gks6sz3ermxcu"
+      identity.type:                                         "SystemAssigned"
+      location:                                              "japaneast"
+      name:                                                  "gptkb-gks6sz3ermxcu"
+      properties.authOptions.aadOrApiKey.aadAuthFailureMode: "http401WithBearerChallenge"
+      properties.disableLocalAuth:                           false
+      properties.encryptionWithCmk.enforcement:              "Unspecified"
+      properties.hostingMode:                                "default"
+      properties.networkRuleSet.bypass:                      "None"
+      properties.partitionCount:                             1
+      properties.publicNetworkAccess:                        "Enabled"
+      properties.replicaCount:                               1
+      properties.semanticSearch:                             "free"
+      sku.name:                                              "standard"
+      tags.azd-env-name:                                     "wf"
+      type:                                                  "Microsoft.Search/searchServices"
+
+  + Microsoft.Storage/storageAccounts/stzsjvqesk32gg4 [2022-05-01]
+
+      apiVersion:                          "2022-05-01"
+      id:                                  "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Storage/storageAccounts/stzsjvqesk32gg4"
+      kind:                                "StorageV2"
+      location:                            "japaneast"
+      name:                                "stzsjvqesk32gg4"
+      properties.allowBlobPublicAccess:    false
+      properties.allowSharedKeyAccess:     true
+      properties.minimumTlsVersion:        "TLS1_2"
+      properties.supportsHttpsTrafficOnly: true
+      sku.name:                            "Standard_LRS"
+      tags.azd-env-name:                   "wf"
+      tags.azd-service-name:               "search-proxy"
+      type:                                "Microsoft.Storage/storageAccounts"
+
+  + Microsoft.Web/serverfarms/plan-gks6sz3ermxcu [2022-03-01]
+
+      apiVersion:          "2022-03-01"
+      id:                  "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Web/serverfarms/plan-gks6sz3ermxcu"
+      kind:                "linux"
+      location:            "japaneast"
+      name:                "plan-gks6sz3ermxcu"
+      properties.reserved: true
+      sku.capacity:        1
+      sku.name:            "B1"
+      tags.azd-env-name:   "wf"
+      type:                "Microsoft.Web/serverfarms"
+
+  + Microsoft.Web/sites/app-backend-gks6sz3ermxcu [2022-03-01]
+
+      apiVersion:                       "2022-03-01"
+      id:                               "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Web/sites/app-backend-gks6sz3ermxcu"
+      identity:                         "*******"
+      kind:                             "app,linux"
+      location:                         "japaneast"
+      name:                             "app-backend-gks6sz3ermxcu"
+      properties.clientAffinityEnabled: false
+      properties.httpsOnly:             true
+      properties.serverFarmId:          "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/providers/Microsoft.Web/serverfarms/plan-gks6sz3ermxcu"
+      properties.siteConfig:            "*******"
+      tags.azd-env-name:                "wf"
+      tags.azd-service-name:            "backend"
+      type:                             "Microsoft.Web/sites"
+
+  + Microsoft.Web/sites/app-backend-gks6sz3ermxcu/config/appsettings [2022-03-01]
+
+      apiVersion: "2022-03-01"
+      id:         "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Web/sites/app-backend-gks6sz3ermxcu/config/appsettings"
+      name:       "appsettings"
+      properties: "[union(createObject('AZURE_KEYVAULT_NAME', 'aiprojeckeyvaulta6075dab', 'AZURE_KEYVAULT_URI', reference('/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.KeyVault/vaults/aiprojeckeyvaulta6075dab', '2023-07-01').vaultUri, 'ENABLE_KEY_VAULT', 'true', 'AZURE_SEARCH_INDEX', 'gptkbindex', 'AZURE_SEARCH_SERVICE', 'gptkb-gks6sz3ermxcu', 'AZURE_SEARCH_USE_SEMANTIC_SEARCH', false(), 'AZURE_SEARCH_SEMANTIC_SEARCH_CONFIG', 'default', 'AZURE_SEARCH_TOP_K', 5, 'AZURE_SEARCH_ENABLE_IN_DOMAIN', true(), 'AZURE_SEARCH_CONTENT_COLUMNS', 'content', 'AZURE_SEARCH_FILENAME_COLUMN', 'filepath', 'AZURE_SEARCH_TITLE_COLUMN', 'title', 'AZURE_SEARCH_URL_COLUMN', 'url', 'AZURE_OPENAI_RESOURCE', 'cog-5b5qpqbzmgmdu', 'AZURE_OPENAI_MODEL', 'turbo', 'AZURE_OPENAI_MODEL_NAME', 'gpt-35-turbo', 'AZURE_OPENAI_ENDPOINT', reference('/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.CognitiveServices/accounts/cog-5b5qpqbzmgmdu', '2023-05-01').endpoint, 'AZURE_OPENAI_TEMPERATURE', 0, 'AZURE_OPENAI_TOP_P', 1, 'AZURE_OPENAI_MAX_TOKENS', 1000, 'AZURE_OPENAI_STOP_SEQUENCE', '', 'AZURE_OPENAI_SYSTEM_MESSAGE', 'You are an AI assistant that helps people find information.', 'AZURE_OPENAI_STREAM', true(), 'AZURE_COSMOSDB_ACCOUNT', 'cosmos-5b5qpqbzmgmdu', 'AZURE_COSMOSDB_DATABASE', 'db_conversation_history', 'AZURE_COSMOSDB_CONVERSATIONS_CONTAINER', 'conversations', 'AZURE_AI_AGENT_ENDPOINT', 'https://ai-agents-service-jp.services.ai.azure.com/api/projects/ai-agents-service-jp-AAAL', 'AZURE_AI_AGENT_KEY', '', 'BING_GROUNDING_CONN_ID', ''), createObject('SCM_DO_BUILD_DURING_DEPLOYMENT', 'True', 'ENABLE_ORYX_BUILD', 'True'), if(not(empty(parameters('authClientSecret'))), createObject('AUTH_CLIENT_SECRET', parameters('authClientSecret')), createObject()))]"
+      type:       "Microsoft.Web/sites/config"
+
+  + Microsoft.Web/sites/app-backend-gks6sz3ermxcu/config/authsettingsV2 [2022-03-01]
+
+      apiVersion:                                                                             "2022-03-01"
+      id:                                                                                     "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Web/sites/app-backend-gks6sz3ermxcu/config/authsettingsV2"
+      name:                                                                                   "authsettingsV2"
+      properties.globalValidation.redirectToProvider:                                         "azureactivedirectory"
+      properties.globalValidation.requireAuthentication:                                      true
+      properties.globalValidation.unauthenticatedClientAction:                                "RedirectToLoginPage"
+      properties.identityProviders.azureActiveDirectory.enabled:                              true
+      properties.identityProviders.azureActiveDirectory.registration.clientId:                "00000000-0000-0000-0000-000000000000"
+      properties.identityProviders.azureActiveDirectory.registration.clientSecretSettingName: "*******"
+      properties.identityProviders.azureActiveDirectory.registration.openIdIssuer:            "https://login.microsoftonline.com/337f2640-9e04-4ae6-8067-20ca525aa02a/v2.0"
+      properties.login.tokenStore.enabled:                                                    true
+      type:                                                                                   "Microsoft.Web/sites/config"
+
+  + Microsoft.Web/sites/app-backend-gks6sz3ermxcu/config/logs [2022-03-01]
+
+      apiVersion:                                     "2022-03-01"
+      id:                                             "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Web/sites/app-backend-gks6sz3ermxcu/config/logs"
+      name:                                           "logs"
+      properties.applicationLogs.fileSystem.level:    "Verbose"
+      properties.detailedErrorMessages.enabled:       true
+      properties.failedRequestsTracing.enabled:       true
+      properties.httpLogs.fileSystem.enabled:         true
+      properties.httpLogs.fileSystem.retentionInDays: 1
+      properties.httpLogs.fileSystem.retentionInMb:   35
+      type:                                           "Microsoft.Web/sites/config"
+
+  + Microsoft.Web/sites/func-search-proxy-gks6sz3ermxcu [2022-03-01]
+
+      apiVersion:              "2022-03-01"
+      id:                      "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Web/sites/func-search-proxy-gks6sz3ermxcu"
+      identity:                "*******"
+      kind:                    "functionapp,linux"
+      location:                "japaneast"
+      name:                    "func-search-proxy-gks6sz3ermxcu"
+      properties.httpsOnly:    true
+      properties.reserved:     true
+      properties.serverFarmId: "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/providers/Microsoft.Web/serverfarms/plan-gks6sz3ermxcu"
+      properties.siteConfig:   "*******"
+      tags.azd-env-name:       "wf"
+      tags.azd-service-name:   "search-proxy"
+      type:                    "Microsoft.Web/sites"
+
+  + Microsoft.Web/sites/func-search-proxy-gks6sz3ermxcu/config/appsettings [2022-03-01]
+
+      apiVersion:                                "2022-03-01"
+      id:                                        "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Web/sites/func-search-proxy-gks6sz3ermxcu/config/appsettings"
+      name:                                      "appsettings"
+      properties.AZURE_CLIENT_ID:                "[reference('/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-gks6sz3ermxcu', '2023-01-31').clientId]"
+      properties.AZURE_KEYVAULT_NAME:            "aiprojeckeyvaulta6075dab"
+      properties.AZURE_KEYVAULT_URI:             "[reference('/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.KeyVault/vaults/aiprojeckeyvaulta6075dab', '2023-07-01').vaultUri]"
+      properties.FUNCTIONS_EXTENSION_VERSION:    "~4"
+      properties.FUNCTIONS_WORKER_RUNTIME:       "python"
+      properties.SCM_DO_BUILD_DURING_DEPLOYMENT: "false"
+      properties.SEARCH_ENDPOINT:                "https://gptkb-gks6sz3ermxcu.search.windows.net"
+      properties.SEARCH_INDEX:                   "gptkbindex"
+      properties.WEBSITE_CONTENTSHARE:           "func-search-proxy-gks6sz3ermxcu-content"
+      properties.WEBSITE_RUN_FROM_PACKAGE:       "1"
+      type:                                      "Microsoft.Web/sites/config"
+
+  + Microsoft.Web/sites/func-search-proxy-gks6sz3ermxcu/providers/Microsoft.Insights/diagnosticSettings/funcapp-diag [2021-05-01-preview]
+
+      apiVersion:             "2021-05-01-preview"
+      id:                     "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-wf/providers/Microsoft.Web/sites/func-search-proxy-gks6sz3ermxcu/providers/Microsoft.Insights/diagnosticSettings/funcapp-diag"
+      name:                   "funcapp-diag"
+      properties.logs: [
+        0:
+
+          category: "FunctionAppLogs"
+          enabled:  true
+
+        1:
+
+          category: "AppServiceConsoleLogs"
+          enabled:  true
+
+        2:
+
+          category: "AppServiceHTTPLogs"
+          enabled:  true
+
+        3:
+
+          category: "AppServicePlatformLogs"
+          enabled:  true
+
+        4:
+
+          category: "AppServiceAuditLogs"
+          enabled:  true
+
+      ]
+      properties.metrics: [
+        0:
+
+          category: "AllMetrics"
+          enabled:  true
+
+      ]
+      properties.workspaceId: "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/providers/Microsoft.OperationalInsights/workspaces/log-gks6sz3ermxcu"
+      type:                   "Microsoft.Insights/diagnosticSettings"
+
+Resource changes: 14 to create.

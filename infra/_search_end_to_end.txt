@@ -1,0 +1,5 @@
+BEGIN 2025-08-23T21:22:02.4977886+09:00
+SERVICE=gptkb-5b5qpqbzmgmdu RG=rg-1
+QUERY_KEY_PRESENT=YES
+APPLIED_SETTINGS
+ERROR: The request was canceled due to the configured HttpClient.Timeout of 25 seconds elapsing.

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "WEBSITE_RUN_FROM_PACKAGE",
+    "slotSetting": false,
+    "value": "1"
+  },
+  {
+    "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
+    "slotSetting": false,
+    "value": "false"
+  },
+  {
+    "name": "AzureWebJobsStorage",
+    "slotSetting": false,
+    "value": "DefaultEndpointsProtocol=https;AccountName=st5w3cidjxdhinc;AccountKey=366BtOGYK5UdFTBWMRpiGUd+Vhnx6ZGMi4wBu7qc2wv6QzFLgKXxfpfrnxRvQVpl0n9N6KLr7G+E+AStDuHSdw=="
+  }
+]

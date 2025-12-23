@@ -1,0 +1,194 @@
+WARNING: A new Bicep release is available: v0.37.4. Upgrade now by running "az bicep upgrade".
+Note: The result may contain false positive predictions (noise).
+You can help us improve the accuracy of the result by opening an issue here: https://aka.ms/WhatIfIssues
+
+Resource and property changes are indicated with these symbols:
+  + Create
+  ~ Modify
+  * Ignore
+
+The deployment will update the following scopes:
+
+Scope: /subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37
+
+  ~ resourceGroups/rg-1 [2021-04-01]
+    ~ tags.azd-env-name: "activarch-chatgpt" => "AAAL"
+
+Scope: /subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1
+
+  + Microsoft.ManagedIdentity/userAssignedIdentities/id-gjvupzfusg55e [2023-01-31]
+
+      apiVersion:        "2023-01-31"
+      id:                "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-gjvupzfusg55e"
+      location:          "japanwest"
+      name:              "id-gjvupzfusg55e"
+      tags.azd-env-name: "AAAL"
+      type:              "Microsoft.ManagedIdentity/userAssignedIdentities"
+
+  + Microsoft.Storage/storageAccounts/stbcudard7nt32a [2022-05-01]
+
+      apiVersion:                          "2022-05-01"
+      id:                                  "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Storage/storageAccounts/stbcudard7nt32a"
+      kind:                                "StorageV2"
+      location:                            "japanwest"
+      name:                                "stbcudard7nt32a"
+      properties.allowBlobPublicAccess:    false
+      properties.allowSharedKeyAccess:     true
+      properties.minimumTlsVersion:        "TLS1_2"
+      properties.supportsHttpsTrafficOnly: true
+      sku.name:                            "Standard_LRS"
+      tags.azd-env-name:                   "AAAL"
+      tags.azd-service-name:               "search-proxy"
+      type:                                "Microsoft.Storage/storageAccounts"
+
+  + Microsoft.Web/sites/app-backend-gjvupzfusg55e [2022-03-01]
+
+      apiVersion:                       "2022-03-01"
+      id:                               "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/app-backend-gjvupzfusg55e"
+      identity:                         "*******"
+      kind:                             "app,linux"
+      location:                         "japanwest"
+      name:                             "app-backend-gjvupzfusg55e"
+      properties.clientAffinityEnabled: false
+      properties.httpsOnly:             true
+      properties.serverFarmId:          "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/serverfarms/plan-fhiczxgxabn5k"
+      properties.siteConfig:            "*******"
+      tags.azd-env-name:                "AAAL"
+      tags.azd-service-name:            "backend"
+      type:                             "Microsoft.Web/sites"
+
+  + Microsoft.Web/sites/app-backend-gjvupzfusg55e/config/appsettings [2022-03-01]
+
+      apiVersion: "2022-03-01"
+      id:         "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/app-backend-gjvupzfusg55e/config/appsettings"
+      name:       "appsettings"
+      properties: "[union(createObject('AZURE_KEYVAULT_NAME', 'aiprojeckeyvaulta6075dab', 'AZURE_KEYVAULT_URI', reference('/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.KeyVault/vaults/aiprojeckeyvaulta6075dab', '2023-07-01').vaultUri, 'ENABLE_KEY_VAULT', 'true', 'AZURE_SEARCH_INDEX', 'gptkbindex', 'AZURE_SEARCH_SERVICE', 'gptkb-5b5qpqbzmgmdu', 'AZURE_SEARCH_USE_SEMANTIC_SEARCH', false(), 'AZURE_SEARCH_SEMANTIC_SEARCH_CONFIG', 'default', 'AZURE_SEARCH_TOP_K', 5, 'AZURE_SEARCH_ENABLE_IN_DOMAIN', true(), 'AZURE_SEARCH_CONTENT_COLUMNS', 'content', 'AZURE_SEARCH_FILENAME_COLUMN', 'filepath', 'AZURE_SEARCH_TITLE_COLUMN', 'title', 'AZURE_SEARCH_URL_COLUMN', 'url', 'AZURE_OPENAI_RESOURCE', 'cog-5b5qpqbzmgmdu', 'AZURE_OPENAI_MODEL', '', 'AZURE_OPENAI_MODEL_NAME', '', 'AZURE_OPENAI_ENDPOINT', reference('/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.CognitiveServices/accounts/cog-5b5qpqbzmgmdu', '2023-05-01').endpoint, 'AZURE_OPENAI_TEMPERATURE', 0, 'AZURE_OPENAI_TOP_P', 1, 'AZURE_OPENAI_MAX_TOKENS', 1000, 'AZURE_OPENAI_STOP_SEQUENCE', '', 'AZURE_OPENAI_SYSTEM_MESSAGE', 'You are an AI assistant that helps people find information.', 'AZURE_OPENAI_STREAM', true(), 'AZURE_COSMOSDB_ACCOUNT', 'cosmos-5b5qpqbzmgmdu', 'AZURE_COSMOSDB_DATABASE', 'db_conversation_history', 'AZURE_COSMOSDB_CONVERSATIONS_CONTAINER', 'conversations', 'AZURE_AI_AGENT_ENDPOINT', 'https://ai-agents-service-jp.services.ai.azure.com/api/projects/ai-agents-service-jp-AAAL', 'AZURE_AI_AGENT_KEY', '', 'BING_GROUNDING_CONN_ID', ''), createObject('SCM_DO_BUILD_DURING_DEPLOYMENT', 'True', 'ENABLE_ORYX_BUILD', 'True'), if(not(empty(parameters('authClientSecret'))), createObject('AUTH_CLIENT_SECRET', parameters('authClientSecret')), createObject()))]"
+      type:       "Microsoft.Web/sites/config"
+
+  + Microsoft.Web/sites/app-backend-gjvupzfusg55e/config/logs [2022-03-01]
+
+      apiVersion:                                     "2022-03-01"
+      id:                                             "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/app-backend-gjvupzfusg55e/config/logs"
+      name:                                           "logs"
+      properties.applicationLogs.fileSystem.level:    "Verbose"
+      properties.detailedErrorMessages.enabled:       true
+      properties.failedRequestsTracing.enabled:       true
+      properties.httpLogs.fileSystem.enabled:         true
+      properties.httpLogs.fileSystem.retentionInDays: 1
+      properties.httpLogs.fileSystem.retentionInMb:   35
+      type:                                           "Microsoft.Web/sites/config"
+
+  + Microsoft.Web/sites/func-search-proxy-gjvupzfusg55e [2022-03-01]
+
+      apiVersion:              "2022-03-01"
+      id:                      "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/func-search-proxy-gjvupzfusg55e"
+      identity:                "*******"
+      kind:                    "functionapp,linux"
+      location:                "japanwest"
+      name:                    "func-search-proxy-gjvupzfusg55e"
+      properties.httpsOnly:    true
+      properties.reserved:     true
+      properties.serverFarmId: "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/serverfarms/plan-fhiczxgxabn5k"
+      properties.siteConfig:   "*******"
+      tags.azd-env-name:       "AAAL"
+      tags.azd-service-name:   "search-proxy"
+      type:                    "Microsoft.Web/sites"
+
+  + Microsoft.Web/sites/func-search-proxy-gjvupzfusg55e/config/appsettings [2022-03-01]
+
+      apiVersion:                                "2022-03-01"
+      id:                                        "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/func-search-proxy-gjvupzfusg55e/config/appsettings"
+      name:                                      "appsettings"
+      properties.AZURE_CLIENT_ID:                "[reference('/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-gjvupzfusg55e', '2023-01-31').clientId]"
+      properties.AZURE_KEYVAULT_NAME:            "aiprojeckeyvaulta6075dab"
+      properties.AZURE_KEYVAULT_URI:             "[reference('/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.KeyVault/vaults/aiprojeckeyvaulta6075dab', '2023-07-01').vaultUri]"
+      properties.FUNCTIONS_EXTENSION_VERSION:    "~4"
+      properties.FUNCTIONS_WORKER_RUNTIME:       "python"
+      properties.SCM_DO_BUILD_DURING_DEPLOYMENT: "false"
+      properties.SEARCH_ENDPOINT:                "https://gptkb-5b5qpqbzmgmdu.search.windows.net"
+      properties.SEARCH_INDEX:                   "gptkbindex"
+      properties.WEBSITE_CONTENTSHARE:           "func-search-proxy-gjvupzfusg55e-content"
+      properties.WEBSITE_RUN_FROM_PACKAGE:       "1"
+      type:                                      "Microsoft.Web/sites/config"
+
+  + Microsoft.Web/sites/func-search-proxy-gjvupzfusg55e/providers/Microsoft.Insights/diagnosticSettings/funcapp-diag [2021-05-01-preview]
+
+      apiVersion:             "2021-05-01-preview"
+      id:                     "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/func-search-proxy-gjvupzfusg55e/providers/Microsoft.Insights/diagnosticSettings/funcapp-diag"
+      name:                   "funcapp-diag"
+      properties.logs: [
+        0:
+
+          category: "FunctionAppLogs"
+          enabled:  true
+
+        1:
+
+          category: "AppServiceConsoleLogs"
+          enabled:  true
+
+        2:
+
+          category: "AppServiceHTTPLogs"
+          enabled:  true
+
+        3:
+
+          category: "AppServicePlatformLogs"
+          enabled:  true
+
+        4:
+
+          category: "AppServiceAuditLogs"
+          enabled:  true
+
+      ]
+      properties.metrics: [
+        0:
+
+          category: "AllMetrics"
+          enabled:  true
+
+      ]
+      properties.workspaceId: "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.OperationalInsights/workspaces/aiprojeclogalyti7f47a670"
+      type:                   "Microsoft.Insights/diagnosticSettings"
+
+  ~ Microsoft.CognitiveServices/accounts/cog-fr-5b5qpqbzmgmdu [2023-05-01]
+    ~ tags.azd-env-name: "activarch-chatgpt" => "AAAL"
+
+  ~ Microsoft.Search/searchServices/gptkb-5b5qpqbzmgmdu [2021-04-01-preview]
+    ~ tags.azd-env-name: "activarch-chatgpt" => "AAAL"
+
+  * Microsoft.Bing/accounts/grounding-bing-fhiczxgxabn5k
+  * Microsoft.CognitiveServices/accounts/ai-agents-service-jp
+  * Microsoft.CognitiveServices/accounts/ai-agents-service-jp/projects/ai-agents-service-jp-AAAL
+  * Microsoft.CognitiveServices/accounts/cog-5b5qpqbzmgmdu
+  * Microsoft.CognitiveServices/accounts/grounding-bing-japaneast
+  * Microsoft.DocumentDB/databaseAccounts/cosmos-fhiczxgxabn5k
+  * Microsoft.Insights/components/aiprojecinsights1bacf38a
+  * Microsoft.KeyVault/vaults/aiprojeckeyvaulta6075dab
+  * Microsoft.MachineLearningServices/workspaces/ai-project-websearch
+  * Microsoft.ManagedIdentity/userAssignedIdentities/id-fhiczxgxabn5k
+  * Microsoft.Network/networkInterfaces/ai-agents-private-endpoint.nic.3693f5f3-a045-49da-87da-d7f475a93b5c
+  * Microsoft.Network/networkInterfaces/pe-openai-appservice.nic.75fc005a-c922-4595-a242-b322bc43a3ec
+  * Microsoft.Network/networkInterfaces/pe-search-5b5qpqbzmgmdu.nic.6b953347-889d-4ae3-9583-7a018d57522d
+  * Microsoft.Network/networkSecurityGroups/nsg-5b5qpqbzmgmdu
+  * Microsoft.Network/privateDnsZones/privatelink.openai.azure.com
+  * Microsoft.Network/privateDnsZones/privatelink.openai.azure.com/virtualNetworkLinks/privatelink.openai.azure.com-vnet-link
+  * Microsoft.Network/privateDnsZones/privatelink.openai.azure.com/virtualNetworkLinks/vnet-fhiczxgxabn5k-link
+  * Microsoft.Network/privateDnsZones/privatelink.search.windows.net
+  * Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/privatelink.search.windows.net-vnet-link
+  * Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/vnet-fhiczxgxabn5k-link
+  * Microsoft.Network/privateEndpoints/ai-agents-private-endpoint
+  * Microsoft.Network/privateEndpoints/pe-openai-appservice
+  * Microsoft.Network/privateEndpoints/pe-search-5b5qpqbzmgmdu
+  * Microsoft.Network/virtualNetworks/vnet-5b5qpqbzmgmdu
+  * Microsoft.Network/virtualNetworks/vnet-fhiczxgxabn5k
+  * Microsoft.OperationalInsights/workspaces/aiprojeclogalyti7f47a670
+  * Microsoft.Portal/dashboards/3b221b3c-ff15-464b-a9c0-bb82bf0a4b7e-dashboard
+  * Microsoft.Storage/storageAccounts/aiprojecstorage228549759
+  * Microsoft.Web/certificates/www.amaris.activarch.co.jp-app-backend-fhiczxgxabn5k
+  * Microsoft.Web/serverFarms/plan-fhiczxgxabn5k
+  * Microsoft.Web/sites/app-backend-fhiczxgxabn5k
+
+Resource changes: 8 to create, 3 to modify, 31 to ignore.

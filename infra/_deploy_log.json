@@ -1,0 +1,100 @@
+[
+  {
+    "details_url": null,
+    "id": "24012e90-34e4-4651-a90d-ac366a3fb4d5",
+    "log_time": "2025-08-23T11:14:39.2451034Z",
+    "message": "Updating submodules.",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "99079016-ac85-4fdc-a0cb-1d3272f9653f",
+    "log_time": "2025-08-23T11:14:40.3718058Z",
+    "message": "Preparing deployment for commit id '326ec325-b'.",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "90da1b06-e334-4412-bfe8-9d8e2cb65b66",
+    "log_time": "2025-08-23T11:14:41.1545671Z",
+    "message": "PreDeployment: context.CleanOutputPath False",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "8e965d47-968d-479b-8fd3-ac3e29e556a5",
+    "log_time": "2025-08-23T11:14:41.390396Z",
+    "message": "PreDeployment: context.OutputPath /home/site/wwwroot",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "6cb95a7d-a0a9-480f-812f-af11f1de48a0",
+    "log_time": "2025-08-23T11:14:41.6538686Z",
+    "message": "Repository path is /tmp/zipdeploy/extracted",
+    "type": 0
+  },
+  {
+    "details_url": "https://func-search-proxy-aaal.scm.azurewebsites.net/api/deployments/326ec325-bee2-4f85-ae1e-15a6593a2fe5/log/c6c834bf-1951-4ada-bb7c-f0389c0bd395",
+    "id": "c6c834bf-1951-4ada-bb7c-f0389c0bd395",
+    "log_time": "2025-08-23T11:14:41.825415Z",
+    "message": "Running oryx build...",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "0e9a8b65-41b7-4072-bf68-ea619f8861f9",
+    "log_time": "2025-08-23T11:25:11.5791633Z",
+    "message": "Writing the artifacts to a Zip file",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "ef8a4f2e-5c7c-48a7-910d-412eecca2abf",
+    "log_time": "2025-08-23T11:26:51.5568736Z",
+    "message": "Running post deployment command(s)...",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "a0c7ba52-08d3-4eba-8686-a7c8f588b1fb",
+    "log_time": "2025-08-23T11:26:51.8231478Z",
+    "message": "",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "70922fb0-74f9-4956-8c3e-45f1045414ec",
+    "log_time": "2025-08-23T11:26:51.9789823Z",
+    "message": "Generating summary of Oryx build",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "6ac96f98-4dc7-4bef-90da-207d37935f97",
+    "log_time": "2025-08-23T11:26:52.150494Z",
+    "message": "Deployment Log file does not exist in /tmp/oryx-build.log",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "c347520a-34ac-4e8e-ad7e-87fc64d071ed",
+    "log_time": "2025-08-23T11:26:52.4247958Z",
+    "message": "The logfile at /tmp/oryx-build.log is empty. Unable to fetch the summary of build",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "77350a69-8f82-48d3-9697-e68372a37539",
+    "log_time": "2025-08-23T11:26:52.9970253Z",
+    "message": "Triggering recycle (preview mode disabled).",
+    "type": 0
+  },
+  {
+    "details_url": null,
+    "id": "fdd768f3-87a3-4cbd-88fa-9e4ccd8a601f",
+    "log_time": "2025-08-23T11:26:53.4226488Z",
+    "message": "Deployment successful. deployer = az_cli_functions deploymentPath = Functions App ZipDeploy. Extract zip. Remote build.",
+    "type": 0
+  }
+]

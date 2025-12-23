@@ -1,0 +1,13 @@
+{
+  "defaultHostName": "func-search-proxy-aaal.azurewebsites.net",
+  "enabledHostNames": [
+    "func-search-proxy-aaal.azurewebsites.net",
+    "func-search-proxy-aaal.scm.azurewebsites.net"
+  ],
+  "hostnames": null,
+  "httpsOnly": true,
+  "kind": "functionapp,linux",
+  "location": "Japan West",
+  "reserved": true,
+  "state": "Running"
+}

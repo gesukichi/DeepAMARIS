@@ -1,0 +1,8 @@
+{
+  "environmentName": { "value": "wf" },
+  "location": { "value": "japaneast" },
+  "authClientId": { "value": "00000000-0000-0000-0000-000000000000" },
+  "authClientSecret": { "value": "dummySecretForWhatIf" },
+  "createRoleAssignments": { "value": false },
+  "principalId": { "value": "" }
+}

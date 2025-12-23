@@ -1,0 +1,200 @@
+{
+  "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Resources/deployments/functions",
+  "location": null,
+  "name": "functions",
+  "properties": {
+    "correlationId": "4f1a704d-2a0b-44d9-acd4-54bea7595acb",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/func-search-proxy-AAAL",
+            "resourceGroup": "rg-1",
+            "resourceName": "func-search-proxy-AAAL",
+            "resourceType": "Microsoft.Web/sites"
+          }
+        ],
+        "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/func-search-proxy-AAAL/config/appsettings",
+        "resourceGroup": "rg-1",
+        "resourceName": "func-search-proxy-AAAL/appsettings",
+        "resourceType": "Microsoft.Web/sites/config"
+      }
+    ],
+    "diagnostics": null,
+    "duration": "PT25.4329193S",
+    "error": null,
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": [
+      {
+        "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Storage/storageAccounts/st5w3cidjxdhinc",
+        "resourceGroup": "rg-1"
+      },
+      {
+        "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/func-search-proxy-AAAL",
+        "resourceGroup": "rg-1"
+      },
+      {
+        "id": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/func-search-proxy-AAAL/config/appsettings",
+        "resourceGroup": "rg-1"
+      }
+    ],
+    "outputs": {
+      "id": {
+        "type": "String",
+        "value": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/sites/func-search-proxy-AAAL"
+      },
+      "identityPrincipalId": {
+        "type": "String",
+        "value": "36ad9771-268c-4390-a275-46cb161bb09c"
+      },
+      "name": {
+        "type": "String",
+        "value": "func-search-proxy-AAAL"
+      },
+      "uri": {
+        "type": "String",
+        "value": "https://func-search-proxy-aaal.azurewebsites.net"
+      }
+    },
+    "parameters": {
+      "appServicePlanId": {
+        "type": "String",
+        "value": "/subscriptions/d5d65530-d8e1-494f-9db6-1a2406d4ce37/resourceGroups/rg-1/providers/Microsoft.Web/serverfarms/plan-fhiczxgxabn5k"
+      },
+      "appSettings": {
+        "type": "Object",
+        "value": {}
+      },
+      "azureWebJobsStorage": {
+        "type": "String",
+        "value": ""
+      },
+      "contentAzureFileConnectionString": {
+        "type": "String",
+        "value": ""
+      },
+      "contentShareName": {
+        "type": "String",
+        "value": ""
+      },
+      "createRoleAssignments": {
+        "type": "Bool",
+        "value": false
+      },
+      "location": {
+        "type": "String",
+        "value": "japanwest"
+      },
+      "logAnalyticsWorkspaceId": {
+        "type": "String",
+        "value": ""
+      },
+      "managedIdentity": {
+        "type": "Bool",
+        "value": true
+      },
+      "name": {
+        "type": "String",
+        "value": "func-search-proxy-AAAL"
+      },
+      "runtimeName": {
+        "type": "String",
+        "value": "python"
+      },
+      "runtimeVersion": {
+        "type": "String",
+        "value": "3.10"
+      },
+      "tags": {
+        "type": "Object",
+        "value": {}
+      },
+      "userAssignedIdentityId": {
+        "type": "String",
+        "value": ""
+      },
+      "userAssignedIdentityPrincipalId": {
+        "type": "String",
+        "value": ""
+      },
+      "virtualNetworkSubnetId": {
+        "type": "String",
+        "value": ""
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Web",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              "japanwest"
+            ],
+            "properties": null,
+            "resourceType": "sites",
+            "zoneMappings": null
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "sites/config",
+            "zoneMappings": null
+          }
+        ]
+      },
+      {
+        "id": null,
+        "namespace": "Microsoft.Storage",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              "japanwest"
+            ],
+            "properties": null,
+            "resourceType": "storageAccounts",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "7292392370025992660",
+    "templateLink": null,
+    "timestamp": "2025-08-23T10:46:59.854327+00:00",
+    "validatedResources": null,
+    "validationLevel": null
+  },
+  "resourceGroup": "rg-1",
+  "tags": null,
+  "type": "Microsoft.Resources/deployments"
+}

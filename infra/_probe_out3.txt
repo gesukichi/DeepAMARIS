@@ -1,0 +1,2 @@
+URL: https://func-search-proxy-aaal.azurewebsites.net/
+STATUS: HTTP ERROR: The request was canceled due to the configured HttpClient.Timeout of 30 seconds elapsing.

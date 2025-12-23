@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": { "value": "activarch-chatgpt" },
+    "location": { "value": "japanwest" },
+    "principalId": { "value": "51ddd4ae-80c0-41c8-b3a2-07fa78d87c5a" },
+    "resourceGroupName": { "value": "rg-1" },
+    "backendServiceName": { "value": "app-backend-fhiczxgxabn5k" },
+    "appServicePlanName": { "value": "plan-fhiczxgxabn5k" },
+    "appServicePlanResourceGroupName": { "value": "rg-1" },
+    "openAiResourceName": { "value": "cog-5b5qpqbzmgmdu" },
+    "openAiResourceGroupName": { "value": "rg-1" },
+    "searchServiceName": { "value": "gptkb-5b5qpqbzmgmdu" },
+    "searchServiceResourceGroupName": { "value": "rg-1" },
+    "searchServiceSkuName": { "value": "standard" },
+    "formRecognizerServiceName": { "value": "cog-fr-5b5qpqbzmgmdu" },
+    "formRecognizerResourceGroupName": { "value": "rg-1" },
+    "formRecognizerSkuName": { "value": "S0" },
+    "cosmosAccountName": { "value": "cosmos-fhiczxgxabn5k" },
+    "keyVaultName": { "value": "aiprojeckeyvaulta6075dab" },
+    "logAnalyticsName": { "value": "aiprojecstorage228549759" },
+    "authClientId": { "value": "6a8eefe7-0959-44a9-8737-9467cbfb0355" },
+    "authClientSecret": { "value": "Rrn8Q~MCYnnnxST54AqbaCZUMqIqhP6_S53OBcGG" },
+    "openAIModel": { "value": "turbo" },
+    "openAIModelName": { "value": "gpt-35-turbo" },
+    "azureAIAgentKey": { "value": "" },
+    "bingGroundingConnId": { "value": "" },
+    "enablePrivateNetworking": { "value": true },
+    "createRoleAssignments": { "value": false },
+    "allowAppServicePlanCreation": { "value": false }
+  }
+}

@@ -1,0 +1,8 @@
+
+ComputerName     : func-search-proxy-aaal.azurewebsites.net
+RemoteAddress    : 40.74.100.143
+RemotePort       : 443
+InterfaceAlias   : Wi-Fi
+SourceAddress    : 192.168.0.92
+TcpTestSucceeded : True
+

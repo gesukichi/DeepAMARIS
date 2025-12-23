@@ -1,0 +1,21 @@
+{
+  "features": {
+    "azure_functions_enabled": false,
+    "conversation_service_enabled": true,
+    "modern_rag_enabled": true,
+    "user_management_enabled": true,
+    "system_management_enabled": true,
+    "app_py_legacy_mode": true
+  },
+  "deployment": {
+    "rollback_enabled": true,
+    "rollback_timeout_minutes": 5,
+    "health_check_interval_seconds": 30,
+    "max_deployment_retries": 3
+  },
+  "metadata": {
+    "last_updated": "2025-08-30T00:00:00Z",
+    "version": "1.0.0",
+    "description": "Task 20: 段階的デプロイ戦略 - フィーチャーフラグ設定"
+  }
+}

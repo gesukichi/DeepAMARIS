@@ -1,0 +1,21 @@
+{
+  "active": true,
+  "author": "N/A",
+  "author_email": "N/A",
+  "complete": true,
+  "deployer": "az_cli_functions",
+  "end_time": "2025-08-23T11:52:05.0349977Z",
+  "id": "64a2a4a2-2aa9-4aa2-be7b-19ab1afa3e9f",
+  "is_readonly": true,
+  "is_temp": false,
+  "last_success_end_time": "2025-08-23T11:52:05.0349977Z",
+  "log_url": "https://func-search-proxy-aaal.scm.azurewebsites.net/api/deployments/64a2a4a2-2aa9-4aa2-be7b-19ab1afa3e9f/log",
+  "message": "Created via a push deployment",
+  "progress": "",
+  "received_time": "2025-08-23T11:51:21.8975639Z",
+  "site_name": "func-search-proxy-aaal",
+  "start_time": "2025-08-23T11:51:23.3686386Z",
+  "status": 4,
+  "status_text": "",
+  "url": "https://func-search-proxy-aaal.scm.azurewebsites.net/api/deployments/64a2a4a2-2aa9-4aa2-be7b-19ab1afa3e9f"
+}

@@ -1,0 +1,2 @@
+URL: https://func-search-proxy-aaal.azurewebsites.net/api/ping
+HTTP 200

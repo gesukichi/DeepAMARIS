@@ -1,0 +1,68 @@
+/* CitationDisplay.module.css */
+.citationsContainer {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #0078d4;
+}
+
+.citationsHeader {
+  font-weight: 600;
+  color: #323130;
+  margin-bottom: 8px;
+}
+
+.citationsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.citationsList li {
+  margin-bottom: 6px;
+  padding: 4px 0;
+}
+
+.webCitation {
+  border-left: 2px solid #ff8c00;
+  padding-left: 8px;
+}
+
+.internalCitation {
+  border-left: 2px solid #107c10;
+  padding-left: 8px;
+}
+
+.errorCitation {
+  border-left: 2px solid #d13438;
+  padding-left: 8px;
+}
+
+.sourceType {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 11px;
+  padding: 2px 6px;
+  background-color: #edebe9;
+  border-radius: 10px;
+  color: #605e5c;
+}
+
+.error {
+  color: #d13438;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 480px) {
+  .citationsContainer {
+    margin-top: 8px;
+    padding: 8px;
+  }
+  
+  .sourceType {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}

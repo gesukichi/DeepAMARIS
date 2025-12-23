@@ -1,0 +1,37 @@
+{
+  "ipSecurityRestrictions": [
+    {
+      "action": "Allow",
+      "additional_properties": {},
+      "description": "Allow all access",
+      "headers": null,
+      "ip_address": "Any",
+      "name": "Allow all",
+      "priority": 2147483647,
+      "subnet_mask": null,
+      "subnet_traffic_tag": null,
+      "tag": null,
+      "vnet_subnet_resource_id": null,
+      "vnet_traffic_tag": null
+    }
+  ],
+  "ipSecurityRestrictionsDefaultAction": null,
+  "scmIpSecurityRestrictions": [
+    {
+      "action": "Allow",
+      "additional_properties": {},
+      "description": "Allow all access",
+      "headers": null,
+      "ip_address": "Any",
+      "name": "Allow all",
+      "priority": 2147483647,
+      "subnet_mask": null,
+      "subnet_traffic_tag": null,
+      "tag": null,
+      "vnet_subnet_resource_id": null,
+      "vnet_traffic_tag": null
+    }
+  ],
+  "scmIpSecurityRestrictionsDefaultAction": null,
+  "scmIpSecurityRestrictionsUseMain": false
+}

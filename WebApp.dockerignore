@@ -1,0 +1,39 @@
+.venv
+.env
+WebApp.Dockerfile
+WebApp.dockerignore
+frontend/node_modules
+frontend/.npm
+
+# ログファイルとバックアップを除外
+*.zip
+*.log
+logs/
+webapp_logs/
+*-logs*/
+backup/
+*.bak
+__pycache__/
+.pytest_cache/
+.git/
+.azure/
+
+# 開発用ファイル
+*.md
+investigation_report_*.md
+analysis_report_*.md
+task-record-*.md
+test_*.py
+TEST_CASE_FLOWS.md
+DEPLOYMENT_TROUBLESHOOTING_GUIDE.md
+
+# デバッグ用設定ファイル
+.env.debug*
+enable-debug.ps1
+disable-debug.ps1
+
+# 追加の最適化: キャッシュファイル
+*.tmp
+.cache/
+.npm/
+node_modules/.cache/
