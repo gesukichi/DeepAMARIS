@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react'
-import { FontIcon, Stack, TextField, Toggle, TooltipHost, DirectionalHint } from '@fluentui/react'
+import { useContext, useMemo, useState } from 'react'
+import { FontIcon, Stack, Text, TextField, TooltipHost, DirectionalHint, Dropdown, IDropdownOption } from '@fluentui/react'
 import { SendRegular } from '@fluentui/react-icons'
 
 import Send from '../../assets/Send.svg'
@@ -9,15 +9,22 @@ import { ChatMessage } from '../../api'
 import { AppStateContext } from '../../state/AppProvider'
 import { resizeImage } from '../../utils/resizeImage'
 
+type ModeOption = {
+  id: string
+  title: string
+  description: string
+  endpoint?: string
+}
+
 interface Props {
   onSend: (question: ChatMessage['content'], id?: string) => void
   disabled: boolean
   placeholder?: string
   clearOnSend?: boolean
   conversationId?: string
-  // 🆕 モード切り替え関連props
-  useModernRag?: boolean
-  onModeChange?: (useModernRag: boolean) => void
+  chatMode?: string
+  modeOptions?: ModeOption[]
+  onModeChange?: (modeId: string) => void
   // 🆕 画像アップロード制御props
   disableImageUpload?: boolean
 }
@@ -28,7 +35,8 @@ export const QuestionInput = ({
   placeholder, 
   clearOnSend, 
   conversationId,
-  useModernRag = false,
+  chatMode,
+  modeOptions,
   onModeChange,
   disableImageUpload = false
 }: Props) => {
@@ -82,18 +90,27 @@ export const QuestionInput = ({
     }
   }
 
-  // モード切り替えハンドラー
-  const handleModeChange = (_ev: React.FormEvent<HTMLElement>, checked?: boolean) => {
-    if (onModeChange) {
-      onModeChange(checked || false)
+  const availableModeOptions = useMemo(() => modeOptions ?? [], [modeOptions])
+  const selectedModeId = chatMode || availableModeOptions[0]?.id
+  const selectedMode = useMemo(
+    () => availableModeOptions.find(option => option.id === selectedModeId) ?? availableModeOptions[0],
+    [availableModeOptions, selectedModeId]
+  )
+
+  const handleModeChange = (_ev: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => {
+    if (onModeChange && option?.key) {
+      onModeChange(option.key as string)
     }
   }
 
-  // ツールチップ用のモード説明テキスト
+  const dropdownOptions: IDropdownOption<ModeOption>[] = availableModeOptions.map(option => ({
+    key: option.id,
+    text: option.title,
+    data: option
+  }))
+
   const getModeDescription = (): string => {
-    return useModernRag 
-      ? "Chat + Web検索統合モード: ドキュメント検索とWeb検索を組み合わせた高度な情報取得"
-      : "Chatモード: Azure OpenAI による標準的な会話"
+    return selectedMode?.description || "利用するチャットモードを選択してください"
   }
 
   const onQuestionChange = (_ev: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
@@ -148,8 +165,8 @@ export const QuestionInput = ({
         )}
       </div>
       
-      {/* 🆕 モード切り替えスイッチ */}
-      {onModeChange && (
+      {/* 🆕 モード切り替えセレクター */}
+      {onModeChange && dropdownOptions.length > 0 && (
         <div 
           className={styles.modeSwitchContainer} 
           data-testid="mode-switch-container" 
@@ -163,14 +180,36 @@ export const QuestionInput = ({
             directionalHint={DirectionalHint.topCenter}
             delay={0}
           >
-            <Toggle
-              checked={useModernRag}
+            <Dropdown
+              ariaLabel={`現在のモード: ${selectedMode?.title ?? 'モード未選択'}`}
+              selectedKey={selectedModeId}
+              options={dropdownOptions}
               onChange={handleModeChange}
-              onText=""
-              offText=""
-              className={styles.modeToggle}
-              ariaLabel={`現在のモード: ${useModernRag ? 'Web検索統合' : 'Chat'}`}
               data-testid="mode-toggle"
+              className={styles.modeToggleDropdown}
+              onRenderOption={option => (
+                <div className={styles.modeOption}>
+                  <Text className={styles.modeOptionTitle}>{option?.text}</Text>
+                  {option?.data?.description && (
+                    <Text variant="small" className={styles.modeOptionDescription}>
+                      {option.data.description}
+                    </Text>
+                  )}
+                </div>
+              )}
+              onRenderTitle={items => {
+                const option = items?.[0]
+                return option ? (
+                  <div className={styles.modeSelectedTitle}>
+                    <Text className={styles.modeOptionTitle}>{option.text}</Text>
+                    {selectedMode?.description && (
+                      <Text variant="small" className={styles.modeOptionDescription}>
+                        {selectedMode.description}
+                      </Text>
+                    )}
+                  </div>
+                ) : null
+              }}
             />
           </TooltipHost>
         </div>
