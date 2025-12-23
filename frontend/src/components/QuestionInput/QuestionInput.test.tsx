@@ -53,13 +53,21 @@ const MockAppProvider = ({ children }: { children: React.ReactNode }) => (
 )
 
 describe('QuestionInput - Mode Switch Integration (TDD)', () => {
+  const modeOptions = [
+    { id: 'normal', title: 'ノーマルチャット', description: 'Azure OpenAI による標準的な会話' },
+    { id: 'modern-rag-web', title: 'RAG + Web検索統合モード', description: 'ドキュメント検索とWeb検索を組み合わせた高度な情報取得' },
+    { id: 'deep-research', title: 'DeepResearchモード', description: '外部情報を深掘りし、調査レポートをまとめて回答' }
+  ]
+
   const defaultProps = {
     onSend: jest.fn(),
     disabled: false,
     placeholder: 'Type a question...',
     clearOnSend: true,
     conversationId: 'test-conversation-id',
-    disableImageUpload: true  // デフォルトで画像アップロードを無効化してエラーを防ぐ
+    disableImageUpload: true,  // デフォルトで画像アップロードを無効化してエラーを防ぐ
+    chatMode: modeOptions[0].id,
+    modeOptions
   }
 
   // Helper function to render with context
@@ -76,20 +84,19 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
   })
 
   describe('Red Phase: Mode Switch Display', () => {
-    test('displays mode switch below send button', () => {
+    test('displays mode selector below send button', () => {
       const onModeChange = jest.fn()
       
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={onModeChange}
         />
       )
 
-      // Check mode switch exists using testid since Japanese text might be complex
-      const modeSwitch = screen.getByTestId('mode-toggle')
-      expect(modeSwitch).toBeInTheDocument()
+      const modeSelector = screen.getByTestId('mode-toggle')
+      expect(modeSelector).toBeInTheDocument()
+      expect(screen.getByText('ノーマルチャット')).toBeInTheDocument()
 
       // Check positioning relative to send button
       const sendButton = screen.getByRole('button', { 
@@ -107,21 +114,16 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
 
       const modeSwitch = screen.getByTestId('mode-toggle')
       
-      // Check Chat mode label
-      expect(modeSwitch).not.toBeChecked()
-      
-      // Check tooltip display - use getAllByText and filter for visible element
       await user1.hover(modeSwitch)
       
       await waitFor(() => {
-        const tooltipElements = screen.getAllByText(/Chatモード: Azure OpenAI による標準的な会話/)
+        const tooltipElements = screen.getAllByText(/Azure OpenAI による標準的な会話/)
         const visibleTooltip = tooltipElements.find(element => !element.hidden)
         expect(visibleTooltip).toBeInTheDocument()
       })
@@ -133,17 +135,13 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={true}
+          chatMode={modeOptions[1].id}
           onModeChange={jest.fn()}
         />
       )
 
       const modeSwitch = screen.getByTestId('mode-toggle')
       
-      // Check Web Search mode label
-      expect(modeSwitch).toBeChecked()
-      
-      // Check tooltip display - use getAllByText and filter for visible element
       await user2.hover(modeSwitch)
       
       await waitFor(() => {
@@ -155,14 +153,13 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
   })
 
   describe('Red Phase: Mode Switch Functionality', () => {
-    test('calls onModeChange when mode switch is clicked', async () => {
+    test('calls onModeChange when a new mode is selected', async () => {
       const user3 = userEvent.setup()
       const onModeChange = jest.fn()
       
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={onModeChange}
         />
       )
@@ -170,8 +167,9 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       const modeSwitch = screen.getByTestId('mode-toggle')
       
       await user3.click(modeSwitch)
+      await user3.click(screen.getByText('DeepResearchモード'))
       
-      expect(onModeChange).toHaveBeenCalledWith(true)
+      expect(onModeChange).toHaveBeenCalledWith('deep-research')
     })
 
     test('supports keyboard navigation for mode switching', async () => {
@@ -181,18 +179,17 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={onModeChange}
         />
       )
 
       const modeSwitch = screen.getByTestId('mode-toggle')
       
-      // Focus and use space key to toggle
       modeSwitch.focus()
-      await user4.keyboard(' ')
+      await user4.keyboard('{Enter}')
       
-      expect(onModeChange).toHaveBeenCalledWith(true)
+      expect(modeSwitch).toHaveAttribute('role', 'combobox')
+      expect(modeSwitch).toHaveAttribute('data-is-focusable', 'true')
     })
   })
 
@@ -201,7 +198,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           // onModeChange not provided
         />
       )
@@ -217,7 +213,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
         <QuestionInput
           {...defaultProps}
           onSend={onSend}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
@@ -249,7 +244,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
@@ -263,27 +257,26 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
 
   // 🆕 Phase 2: UI Improvements - TDD for new requirements
   describe('Red Phase: UI Improvements', () => {
-    test('hides toggle text labels (Chat/Web検索) while keeping tooltip', async () => {
+    test('shows selected mode label and description with tooltip support', async () => {
       const user = userEvent.setup()
       
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
 
       const modeSwitch = screen.getByTestId('mode-toggle')
       
-      // Text labels should not be visible in the DOM
-      expect(screen.queryByText('Chat')).not.toBeInTheDocument()
-      expect(screen.queryByText('Web検索')).not.toBeInTheDocument()
+      expect(screen.getByText('ノーマルチャット')).toBeInTheDocument()
+      const descriptions = screen.getAllByText(/Azure OpenAI による標準的な会話/)
+      const visibleDescription = descriptions.find(element => !element.getAttribute('hidden'))
+      expect(visibleDescription).toBeInTheDocument()
       
-      // But tooltip should still work
       await user.hover(modeSwitch)
       await waitFor(() => {
-        const tooltipElements = screen.getAllByText(/Chatモード: Azure OpenAI による標準的な会話/)
+        const tooltipElements = screen.getAllByText(/Azure OpenAI による標準的な会話/)
         const visibleTooltip = tooltipElements.find(element => !element.hidden)
         expect(visibleTooltip).toBeInTheDocument()
       })
@@ -293,7 +286,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
@@ -312,7 +304,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
           disableImageUpload={true}  // 画像アップロードを無効化
         />
@@ -336,7 +327,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
@@ -351,7 +341,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
@@ -366,7 +355,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
@@ -384,7 +372,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
@@ -398,7 +385,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
         />
       )
@@ -412,7 +398,6 @@ describe('QuestionInput - Mode Switch Integration (TDD)', () => {
       renderWithContext(
         <QuestionInput
           {...defaultProps}
-          useModernRag={false}
           onModeChange={jest.fn()}
           disableImageUpload={false}  // 明示的に画像アップロードを有効化
         />

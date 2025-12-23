@@ -220,6 +220,13 @@ class OpenAPIGenerator:
                     'tags': ['History']
                 }
             },
+            '/history/generate/deep-research': {
+                'post': {
+                    'summary': 'DeepResearch会話履歴生成API',
+                    'description': 'DeepResearch機能を用いて調査ベースの回答を生成し、会話履歴として保存します。外部情報を深掘りする拡張モードです。',
+                    'tags': ['History']
+                }
+            },
             '/history/update': {
                 'post': {
                     'summary': '会話履歴更新API',

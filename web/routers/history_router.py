@@ -12,6 +12,7 @@ TDD Phase: REFACTOR - 外部委託対応HTTPエンドポイント実装（t-wada
 移植完了: app.py履歴管理関連10関数
 ✅ add_conversation() → POST /history/generate
 ✅ add_conversation_modern_rag() → POST /history/generate/modern-rag-web  
+✅ add_conversation_deepresearch() → POST /history/generate/deep-research  
 ✅ update_conversation() → POST /history/update
 ✅ update_message() → POST /history/message_feedback
 ✅ delete_conversation() → DELETE /history/delete
@@ -25,6 +26,8 @@ TDD Phase: REFACTOR - 外部委託対応HTTPエンドポイント実装（t-wada
 import copy
 import json
 import logging
+import uuid
+from datetime import datetime
 from typing import Dict, List, Optional, Any
 from quart import Blueprint, request, jsonify, current_app, Response
 from web.controllers.history_controller import HistoryController
@@ -385,6 +388,91 @@ async def create_modern_rag_conversation():
         return jsonify({"error": str(e)}), 400
     except Exception as e:
         logger.exception("Exception in /history/generate/modern-rag-web")
+        return jsonify({"error": str(e)}), 500
+
+
+@history_bp.route('/generate/deep-research', methods=['POST'])
+async def create_deepresearch_conversation():
+    """
+    DeepResearch 会話作成エンドポイント
+    """
+    try:
+        await _ensure_cosmos_ready()
+        user_id = await _get_authenticated_user_id()
+        
+        request_json = await request.get_json()
+        if not request_json:
+            return jsonify({"error": "Request body required"}), 400
+        
+        messages = request_json.get("messages", [])
+        conversation_id = request_json.get("conversation_id")
+        messages = [m for m in messages if isinstance(m, dict) and m.get("role") != "tool"]
+        
+        controller = get_history_controller()
+        result = await controller.create_deepresearch_conversation(
+            user_id=user_id,
+            messages=messages,
+            conversation_id=conversation_id,
+            title_generator_func=None
+        )
+        history_metadata = result.get("history_metadata", {})
+        
+        user_message = None
+        for msg in reversed(messages):
+            if isinstance(msg, dict) and msg.get("role") == "user":
+                user_message = msg.get("content", "")
+                break
+        
+        if not user_message or user_message.strip() == "":
+            return jsonify({"error": "User message is required"}), 400
+        
+        if not hasattr(current_app, "deepresearch") or not current_app.deepresearch:
+            return jsonify({"error": "DeepResearch service not initialized"}), 503
+        
+        service = current_app.deepresearch
+        research_result = await service.run_research(user_message, user_id)
+        
+        if str(research_result.status).lower() not in ("success", "succeeded", "ok"):
+            return jsonify({"error": f"DeepResearch processing failed: {research_result.response}"}), 500
+        
+        citations_html = service.format_citations_html(research_result.citations)
+        
+        response_message = {
+            "role": "assistant",
+            "content": research_result.response,
+            "id": str(uuid.uuid4()),
+            "date": datetime.now().isoformat(),
+        }
+        
+        if research_result.citations:
+            response_message["context"] = json.dumps({
+                "citations": research_result.citations,
+                "citations_html": citations_html
+            })
+        
+        chat_response = {
+            "id": research_result.run_id or str(uuid.uuid4()),
+            "model": app_settings.azure_openai.model,
+            "created": int(datetime.now().timestamp()),
+            "object": "chat.completion",
+            "choices": [{
+                "messages": [response_message]
+            }],
+            "history_metadata": history_metadata or {
+                "conversation_id": research_result.thread_id or str(uuid.uuid4()),
+                "title": user_message[:50] + "..." if len(user_message) > 50 else user_message,
+                "date": datetime.now().isoformat(),
+                "deepresearch_enabled": True
+            }
+        }
+        
+        return jsonify(chat_response)
+        
+    except ValueError as e:
+        logger.warning(f"Validation error in create_deepresearch_conversation: {str(e)}")
+        return jsonify({"error": str(e)}), 400
+    except Exception as e:
+        logger.exception("Exception in /history/generate/deep-research")
         return jsonify({"error": str(e)}), 500
 
 

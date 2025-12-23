@@ -39,6 +39,21 @@ export async function modernRagWebConversationApi(options: ConversationRequest, 
   return response
 }
 
+export async function deepResearchConversationApi(options: ConversationRequest, abortSignal: AbortSignal): Promise<Response> {
+  const response = await fetch('/conversation/deep-research', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      messages: stripToolMessages(options.messages)
+    }),
+    signal: abortSignal
+  })
+
+  return response
+}
+
 export async function getUserInfo(): Promise<UserInfo[]> {
   const response = await fetch('/.auth/me')
   if (!response.ok) {
@@ -185,6 +200,40 @@ export const modernRagHistoryGenerate = async (
     })
   }
   const response = await fetch('/history/generate/modern-rag-web', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: body,
+    signal: abortSignal
+  })
+    .then(res => {
+      return res
+    })
+    .catch(_err => {
+      console.error('There was an issue fetching your data.')
+      return new Response()
+    })
+  return response
+}
+
+export const deepResearchHistoryGenerate = async (
+  options: ConversationRequest,
+  abortSignal: AbortSignal,
+  convId?: string
+): Promise<Response> => {
+  let body
+  if (convId) {
+    body = JSON.stringify({
+      conversation_id: convId,
+      messages: stripToolMessages(options.messages)
+    })
+  } else {
+    body = JSON.stringify({
+      messages: stripToolMessages(options.messages)
+    })
+  }
+  const response = await fetch('/history/generate/deep-research', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

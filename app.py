@@ -75,6 +75,11 @@ from backend.utils import (
     convert_to_pf_format,
     format_pf_non_streaming_response,
 )
+from backend.deep_research_service import (
+    create_service_from_env,
+    DeepResearchResult,
+    DeepResearchService,
+)
 from domain.user.services.auth_service import AuthService
 from domain.user.interfaces.auth_service import AuthenticationError
 
@@ -536,6 +541,115 @@ async def conversation():
         return jsonify(response_data), status_code
 
 
+@bp.route("/conversation/deep-research", methods=["POST"])
+async def deep_research_conversation():
+    """
+    DeepResearch integration endpoint
+    Proxies user questions to the external deepresearch-func service.
+    """
+    if not request.is_json:
+        response_data, status_code = create_error_response(
+            "リクエストはJSON形式である必要があります",
+            HTTPStatus.UNSUPPORTED_MEDIA_TYPE,
+            "INVALID_CONTENT_TYPE"
+        )
+        return jsonify(response_data), status_code
+
+    headers = dict(request.headers)
+    try:
+        principal = auth_service.get_user_principal(headers)
+    except AuthenticationError:
+        response_data, status_code = create_unauthorized_response("認証に失敗しました")
+        return jsonify(response_data), status_code
+    except Exception:
+        logging.exception("Authentication processing error")
+        response_data, status_code = create_unauthorized_response("認証に失敗しました")
+        return jsonify(response_data), status_code
+
+    if not principal or not principal.user_principal_id:
+        response_data, status_code = create_unauthorized_response("認証ヘッダーが不足しています")
+        return jsonify(response_data), status_code
+
+    if not hasattr(current_app, "deepresearch") or not current_app.deepresearch:
+        response_data, status_code = create_service_unavailable_response(
+            "DeepResearch service not initialized"
+        )
+        return jsonify(response_data), status_code
+
+    try:
+        request_json = await request.get_json()
+        messages = request_json.get("messages", [])
+
+        if not messages:
+            response_data, status_code = create_error_response(
+                "メッセージは必須です",
+                HTTPStatus.BAD_REQUEST,
+                "MISSING_MESSAGES"
+            )
+            return jsonify(response_data), status_code
+
+        user_message = None
+        for msg in reversed(messages):
+            if msg.get("role") == "user":
+                user_message = msg.get("content", "")
+                break
+
+        if not user_message or (isinstance(user_message, str) and user_message.strip() == ""):
+            response_data, status_code = create_error_response(
+                "ユーザーメッセージが見つかりません",
+                HTTPStatus.BAD_REQUEST,
+                "MISSING_USER_MESSAGE"
+            )
+            return jsonify(response_data), status_code
+
+        service: DeepResearchService = current_app.deepresearch
+        result: DeepResearchResult = await service.run_research(user_message, principal.user_principal_id)
+
+        if str(result.status).lower() not in ("success", "succeeded", "ok"):
+            response_data, status_code = create_server_error_response(
+                f"DeepResearch処理に失敗しました: {result.response}"
+            )
+            return jsonify(response_data), status_code
+
+        citations_html = service.format_citations_html(result.citations)
+
+        response_message = {
+            "role": "assistant",
+            "content": result.response,
+            "id": str(uuid.uuid4()),
+            "date": datetime.now().isoformat(),
+        }
+
+        if result.citations:
+            response_message["context"] = json.dumps({
+                "citations": result.citations,
+                "citations_html": citations_html,
+            })
+
+        chat_response = {
+            "id": result.run_id or str(uuid.uuid4()),
+            "model": app_settings.azure_openai.model,
+            "created": int(datetime.now().timestamp()),
+            "object": "chat.completion",
+            "choices": [{
+                "messages": [response_message]
+            }],
+            "history_metadata": {
+                "conversation_id": result.thread_id or str(uuid.uuid4()),
+                "title": user_message[:50] + "..." if isinstance(user_message, str) and len(user_message) > 50 else user_message,
+                "date": datetime.now().isoformat(),
+                "deepresearch_enabled": True,
+            }
+        }
+
+        return jsonify(chat_response)
+
+    except Exception as e:
+        logging.exception("Exception in /conversation/deep-research")
+        response_data, status_code = create_server_error_response(str(e))
+        return jsonify(response_data), status_code
+
+
 @bp.route("/conversation/modern-rag-web", methods=["POST"])
 async def modern_rag_web_conversation():
     """
@@ -871,6 +985,17 @@ def create_app():
             except Exception as e:
                 logging.exception("Failed to initialize Modern RAG service with full traceback")
                 app.modern_rag = None
+
+            # Initialize DeepResearch service
+            try:
+                app.deepresearch = create_service_from_env()
+                if app.deepresearch:
+                    logging.info("DeepResearch service initialized successfully")
+                else:
+                    logging.info("DeepResearch service disabled - missing configuration")
+            except Exception:
+                logging.exception("Failed to initialize DeepResearch service")
+                app.deepresearch = None
                 
         except Exception as e:
             logging.exception("Critical error in application initialization")
@@ -886,6 +1011,9 @@ def create_app():
             if hasattr(app, 'modern_rag') and app.modern_rag:
                 await app.modern_rag.aclose()
                 logging.info("Modern RAG service closed successfully")
+            if hasattr(app, 'deepresearch') and app.deepresearch:
+                await app.deepresearch.aclose()
+                logging.info("DeepResearch service closed successfully")
         except Exception as e:
             logging.exception("Error during service cleanup")
     

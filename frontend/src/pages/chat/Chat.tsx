@@ -19,7 +19,8 @@ import {
   ChatMessage,
   ConversationRequest,
   conversationApi,
-  modernRagWebConversationApi,  // 新規追加
+  modernRagWebConversationApi,
+  deepResearchConversationApi,
   Citation,
   ToolMessageContent,
   AzureSqlServerExecResults,
@@ -27,7 +28,8 @@ import {
   getUserInfo,
   Conversation,
   historyGenerate,
-  modernRagHistoryGenerate,  // 新規追加
+  modernRagHistoryGenerate,
+  deepResearchHistoryGenerate,
   historyUpdate,
   historyClear,
   ChatHistoryLoadingState,
@@ -57,16 +59,16 @@ const modeOptions: ModeOption[] = [
     endpoint: '/conversation'
   },
   {
-    id: 'rag',
-    title: 'RAGモード',
-    description: '高精度な情報検索とドキュメント参照',
-    endpoint: '/conversation/rag'
-  },
-  {
     id: 'modern-rag-web',
     title: 'RAG + Web検索統合モード',
     description: 'ドキュメント検索とWeb検索を組み合わせた高度な情報取得',
     endpoint: '/conversation/modern-rag-web'
+  },
+  {
+    id: 'deep-research',
+    title: 'DeepResearchモード',
+    description: '外部情報を深掘りし、調査レポートをまとめて回答',
+    endpoint: '/conversation/deep-research'
   }
 ];
 
@@ -86,7 +88,7 @@ const Chat = () => {
   const [activeCitation, setActiveCitation] = useState<Citation>()
   const [isCitationPanelOpen, setIsCitationPanelOpen] = useState<boolean>(false)
   const [isIntentsPanelOpen, setIsIntentsPanelOpen] = useState<boolean>(false)
-  const [useModernRag, setUseModernRag] = useState<boolean>(false)  // 新規追加
+  const [chatMode, setChatMode] = useState<string>(modeOptions[0].id)
   const abortFuncs = useRef([] as AbortController[])
   const [showAuthMessage, setShowAuthMessage] = useState<boolean | undefined>()
   const [messages, setMessages] = useState<ChatMessage[]>([])
@@ -268,11 +270,16 @@ const Chat = () => {
         messages: [...conversation.messages.filter(answer => answer.role !== ERROR && answer.role !== TOOL)]
       }
 
+    const isModernRagMode = chatMode === 'modern-rag-web'
+    const isDeepResearchMode = chatMode === 'deep-research'
+
     let result = {} as ChatResponse
     try {
-      const response = useModernRag 
-        ? await modernRagWebConversationApi(request, abortController.signal)
-        : await conversationApi(request, abortController.signal)
+      const response = isDeepResearchMode
+        ? await deepResearchConversationApi(request, abortController.signal)
+        : isModernRagMode
+          ? await modernRagWebConversationApi(request, abortController.signal)
+          : await conversationApi(request, abortController.signal)
       if (response?.body) {
         const reader = response.body.getReader()
 
@@ -390,16 +397,23 @@ const Chat = () => {
         }
       setMessages(request.messages)
     }
+    const isModernRagMode = chatMode === 'modern-rag-web'
+    const isDeepResearchMode = chatMode === 'deep-research'
+
     let result = {} as ChatResponse
     var errorResponseMessage = 'Please try again. If the problem persists, please contact the site administrator.'
     try {
       const response = conversationId
-        ? useModernRag
-          ? await modernRagHistoryGenerate(request, abortController.signal, conversationId)
-          : await historyGenerate(request, abortController.signal, conversationId)
-        : useModernRag
-          ? await modernRagHistoryGenerate(request, abortController.signal)
-          : await historyGenerate(request, abortController.signal)
+        ? isDeepResearchMode
+          ? await deepResearchHistoryGenerate(request, abortController.signal, conversationId)
+          : isModernRagMode
+            ? await modernRagHistoryGenerate(request, abortController.signal, conversationId)
+            : await historyGenerate(request, abortController.signal, conversationId)
+        : isDeepResearchMode
+          ? await deepResearchHistoryGenerate(request, abortController.signal)
+          : isModernRagMode
+            ? await modernRagHistoryGenerate(request, abortController.signal)
+            : await historyGenerate(request, abortController.signal)
       if (!response?.ok) {
         const responseJson = await response.json()
         errorResponseMessage =
@@ -1009,8 +1023,9 @@ const Chat = () => {
                 conversationId={
                   appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined
                 }
-                useModernRag={useModernRag}
-                onModeChange={setUseModernRag}
+                chatMode={chatMode}
+                modeOptions={modeOptions}
+                onModeChange={setChatMode}
                 disableImageUpload={true}
               />
             </Stack>

@@ -167,6 +167,53 @@ class HistoryController:
             self._logger.error(f"Failed to create Modern RAG conversation: {str(e)}")
             raise
     
+    async def create_deepresearch_conversation(
+        self,
+        user_id: str,
+        messages: List[Dict[str, Any]],
+        conversation_id: Optional[str] = None,
+        title_generator_func: Optional[callable] = None
+    ) -> Dict[str, Any]:
+        """
+        DeepResearch 会話作成
+        
+        Args:
+            user_id: ユーザーID
+            messages: メッセージリスト
+            conversation_id: 既存会話ID（任意）
+            title_generator_func: タイトル生成関数
+            
+        Returns:
+            作成結果（deepresearch_enabled: trueを含む）
+        """
+        self._validate_user_id(user_id)
+        self._validate_messages(messages)
+        if conversation_id:
+            self._validate_conversation_id(conversation_id)
+        
+        try:
+            title_generator = title_generator_func if not conversation_id else None
+            
+            result = await self._conversation_service.create_conversation_with_message(
+                user_id=user_id,
+                messages=messages,
+                conversation_id=conversation_id,
+                title_generator_func=title_generator
+            )
+            
+            if not result.get("success"):
+                raise Exception("Failed to create conversation with message")
+            
+            if "history_metadata" in result:
+                result["history_metadata"]["deepresearch_enabled"] = True
+            
+            self._logger.info(f"Created DeepResearch conversation for user {user_id}")
+            return result
+            
+        except Exception as e:
+            self._logger.error(f"Failed to create DeepResearch conversation: {str(e)}")
+            raise
+    
     async def update_conversation(
         self,
         user_id: str,
